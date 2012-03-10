@@ -1,0 +1,12 @@
+<div id="{$extKey}_{$contentID}">{$LL.lade_daten}</div>
+<div class="{$extKey}_quelle">{$LL.quelle}</div>
+<script type="text/javascript">
+	var {$extKey}_{$contentID} = new fussballdeAPI();
+	{$extKey}_{$contentID}.setzeSaison('{$conf.season}');
+	{$extKey}_{$contentID}.setzeWettbewerbID('{$conf.competitionid}');
+{if $conf.display eq "games"}
+	{$extKey}_{$contentID}.zeigeWettbewerb('{$extKey}_{$contentID}');
+{elseif $conf.display eq "table"}
+	{$extKey}_{$contentID}.zeigeTabelle('{$extKey}_{$contentID}');
+{/if}
+</script>

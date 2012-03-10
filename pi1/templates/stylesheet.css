@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+@media all
+{
+	/* Elemente ausblenden */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPItoplogo,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI table#edKopf,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI iframe,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI #edBegegnungsliste .SpieltagSuchblock,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div#edReiternavigation,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPItoplogo,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPISuche {
+		height: 0 !important;
+		display: none !important;
+	}
+    
+	/* Volle Breite */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI table.edKerntabelle {
+		width: 100% !important;
+	}
+    
+	/* Schriftfarbe */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div.verlegteSpiele,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div.TurnierTabelle {
+		color: #444 !important;
+		font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif !important;
+		font-size: 100.01% !important;
+	}
+	
+
+	/**
+	 * Tabellen
+	 */
+
+	/* Rand entfernen */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI {
+		border: none !important;
+	}
+
+	/* Hintergrund bei ungeraden Zeilen */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPIRowInactA,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI .edLiInactA {
+		background: #fff !important;
+	}
+
+	/* Hintergrund bei geraden Zeilen */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPIRowInactB,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI .edLiInactB {
+		background: #eee !important;
+	}
+
+	/* Titelzeile */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI th {
+		background: #444 !important;
+		color: #fff !important;
+	}
+	
+	
+	/**
+	 * Links
+	 */
+
+	/* normale Links */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI a {
+		color: #4D87C7 !important;
+	}
+
+	/* Links bei Mouseover */
+	.tx-larspfussballdejs-pi1 #fussballdeAPI a:focus,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI a:hover,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI a:active {
+		color: #182E7A !important;
+		text-decoration: underline !important;
+	}
+	
+	
+	/**
+	 * Quelle
+	 */
+
+	.larsp_fussballde_js_quelle {
+		text-align: right;
+		color: #999999;
+	}
+}
