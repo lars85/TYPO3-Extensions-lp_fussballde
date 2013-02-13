@@ -112,15 +112,28 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$typoScriptProperties = $this->getTypoScriptProperties($contentObject, $extensionTypoScript);
 		$flexFormProperties = $this->flexFormService->convertFlexFormContentToArray($contentObject->data['pi_flexform']);
 		$flexFormProperties = $this->patchFlexFormProperties($flexFormProperties, array_keys($typoScriptProperties));
+
 		if ($flexFormProperties['display'] === 'default') {
 			unset($flexFormProperties['display']);
 		}
 		$properties = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($typoScriptProperties, $flexFormProperties, FALSE, FALSE);
 		$properties['extKey'] = 'larsp_fussballde_js';
 		$properties['contentId'] = $contentObject->data['uid'];
+
+		if (isset($properties['season']) && $properties['season'] == 'current') {
+			$seasonTs = $extensionTypoScript['properties.']['season.'];
+			$year = date('y');
+			if (time() < mktime(0, 0, 0, intval($seasonTs['swapMonth']), intval($seasonTs['swapDay']))) {
+				$properties['season'] = str_pad(intval($year) - 1, 2, '0', STR_PAD_LEFT) . str_pad($year, 2, '0', STR_PAD_LEFT);
+			} else {
+				$properties['season'] = str_pad($year, 2, '0', STR_PAD_LEFT) . str_pad(intval($year) + 1, 2, '0', STR_PAD_LEFT);
+			}
+		}
+
 		foreach ($properties as $key => $value) {
 			$properties[$key] = htmlspecialchars($value);
 		}
+
 		return $properties;
 	}
 
@@ -169,16 +182,6 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 			if ($propertyValue !== NULL) {
 				$properties[$keyWithoutDot] = $propertyValue;
-			}
-		}
-
-		if (isset($properties['season']) && $properties['season'] == 'current') {
-			$seasonTs = $extensionTypoScript['properties.']['season.'];
-			$year = date('y');
-			if (time() < mktime(0, 0, 0, intval($seasonTs['swapMonth']), intval($seasonTs['swapDay']))) {
-				$properties['season'] = str_pad(intval($year) - 1, 2, '0', STR_PAD_LEFT) . str_pad($year, 2, '0', STR_PAD_LEFT);
-			} else {
-				$properties['season'] = str_pad($year, 2, '0', STR_PAD_LEFT) . str_pad(intval($year) + 1, 2, '0', STR_PAD_LEFT);
 			}
 		}
 
