@@ -58,6 +58,16 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
 		$typoScriptObject = &$GLOBALS['TSFE'];
 
+		if (empty($typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'])) {
+			/** @var $flashMessageObject \TYPO3\CMS\Core\Messaging\FlashMessage */
+			$flashMessageObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+				'TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+				'Missing configuration: plugin.tx_larspfussballdejs_pi1',
+				'Fussball.de JavaScript',
+				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+			);
+			return $flashMessageObject->render();
+		}
 		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
 
 		$properties = $this->getProperties($extensionTypoScript, $contentObject);
@@ -70,25 +80,24 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				'Fussball.de JavaScript',
 				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
-			$content = $flashMessageObject->render();
+			return $flashMessageObject->render();
 		}
-		else {
-			array_push($typoScriptObject->registerStack, $typoScriptObject->register);
-			$this->addArrayToRegister($typoScriptObject, $properties);
 
-			$jsFiles = $this->getJavaScriptFiles($extensionTypoScript, $contentObject);
-			foreach ($jsFiles as $jsFile) {
-				if (!empty($extensionTypoScript['includeJsInFooter'])) {
-					$typoScriptObject->getPageRenderer()->addJsFooterFile($jsFile);
-				} else {
-					$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
-				}
+		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
+		$this->addArrayToRegister($typoScriptObject, $properties);
+
+		$jsFiles = $this->getJavaScriptFiles($extensionTypoScript, $contentObject);
+		foreach ($jsFiles as $jsFile) {
+			if (!empty($extensionTypoScript['includeJsInFooter'])) {
+				$typoScriptObject->getPageRenderer()->addJsFooterFile($jsFile);
+			} else {
+				$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 			}
-
-			$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
-
-			$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
 		}
+
+		$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
+
+		$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
 
 		return '<div class="tx-larspfussballdejs-pi1">' . $content . '</div>';
 	}

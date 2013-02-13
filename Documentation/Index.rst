@@ -86,4 +86,4 @@ Fehler & Anregungen melden
 
 Fehler und Anregungen koennen jederzeit sehr gerne im `Bug Tracker`_ gemeldet werden.
 
-.. _Bug Tracker: https://bitbucket.org/lars85/typo3-extensions-larsp_fussballde_js
+.. _Bug Tracker: https://bitbucket.org/lars85/typo3-extensions-larsp_fussballde_js/issues?status=new&status=open

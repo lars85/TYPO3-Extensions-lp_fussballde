@@ -29,4 +29,8 @@ Inhaltselement anlegen
 Updateinformationen
 ====
 
-Die Version 2.0 wurde von Grund auf mit Extbase neuentwickelt. Die Verwendung der Template-Engine Smarty in Version 1.x war eine Spielerei, welche in Version 2 durch eine TypoScript-Konfiguration ausgetauscht wurde. Die Plugin- (Flexform) und TypoScript-Konfigurationen von Version 1.x sind kompatibel zu Version 2. Es sollten keine Probleme bei Updates auftreten. Stylesheets sind in Version 2.0 standardmässig aktiviert.
+Die Version 2.0 wurde von Grund auf mit Extbase und TYPO3 v6 Namespaces neuentwickelt.
+Die Verwendung der Template-Engine Smarty in Version 1.x war eine Spielerei, welche in Version 2 durch eine TypoScript-Konfiguration ausgetauscht wurde.
+Die Plugin- (Flexform) und TypoScript-Konfigurationen von Version 1.x sind kompatibel zu Version 2.
+Es sollten keine Probleme bei Updates auftreten.
+Stylesheets sind in Version 2.0 standardmässig aktiviert.
