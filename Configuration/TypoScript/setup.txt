@@ -8,11 +8,13 @@ plugin.tx_larspfussballdejs_pi1 {
 		display = {$plugin.tx_larspfussballdejs_pi1.properties.display}
 	}
 
-	includeJs.main {
-		data = register:key
-		wrap = http://static.fussball.de/fbdeAPI/js/fbdeAPIFunctions.js?schluessel=|
+	# Includes an array of Javascript files
+	includeJs {
+		main {
+			data = register:key
+			wrap = http://static.fussball.de/fbdeAPI/js/fbdeAPIFunctions.js?schluessel=|
+		}
 	}
-	includeJsInFooter = 1
 
 	renderObj = COA
 	renderObj {

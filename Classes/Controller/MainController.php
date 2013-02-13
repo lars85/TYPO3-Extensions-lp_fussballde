@@ -88,11 +88,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 		$jsFiles = $this->getJavaScriptFiles($extensionTypoScript, $contentObject);
 		foreach ($jsFiles as $jsFile) {
-			if (!empty($extensionTypoScript['includeJsInFooter'])) {
-				$typoScriptObject->getPageRenderer()->addJsFooterFile($jsFile);
-			} else {
-				$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
-			}
+			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
 
 		$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
