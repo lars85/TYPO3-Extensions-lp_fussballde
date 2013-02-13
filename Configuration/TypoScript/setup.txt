@@ -1,7 +1,66 @@
-@charset "UTF-8";
+plugin.tx_larspfussballdejs_pi1 {
+	properties {
+		key = {$plugin.tx_larspfussballdejs_pi1.properties.key}
+		competitionId = {$plugin.tx_larspfussballdejs_pi1.properties.competitionId}
+		season = {$plugin.tx_larspfussballdejs_pi1.properties.season}
+		season.swapMonth = {$plugin.tx_larspfussballdejs_pi1.properties.season.swapMonth}
+		season.swapDay = {$plugin.tx_larspfussballdejs_pi1.properties.season.swapDay}
+		display = {$plugin.tx_larspfussballdejs_pi1.properties.display}
+	}
 
-@media all
-{
+	includeJs.main {
+		data = register:key
+		wrap = http://static.fussball.de/fbdeAPI/js/fbdeAPIFunctions.js?schluessel=|
+	}
+	includeJsInFooter = 1
+
+	renderObj = COA
+	renderObj {
+		# Lade Daten Anzeige
+		10 = TEXT
+		10.value = <div id="{register:extKey}_{register:contentId}">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:loading}</div>
+		10.insertData = 1
+
+		# Quellen Anzeige
+		20 = TEXT
+		20.value = <div class="{register:extKey}_quelle">{{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
+		20.insertData = 1
+
+		# Javascript
+		30 = COA
+		30 {
+			wrap = <script type="text/javascript">|</script>
+
+			10 = TEXT
+			10.value = var {register:extKey}_{register:contentId} = new fussballdeAPI();
+			10.insertData = 1
+
+			20 = TEXT
+			20.value = {register:extKey}_{register:contentId}.setzeSaison('{register:season}');
+			20.insertData = 1
+
+			30 = TEXT
+			30.value = {register:extKey}_{register:contentId}.setzeWettbewerbID('{register:competitionId}');
+			30.insertData = 1
+
+			40 = CASE
+			40 {
+				key.data = register:display
+
+				games = TEXT
+				games.value = {register:extKey}_{register:contentId}.zeigeWettbewerb('{register:extKey}_{register:contentId}');
+				games.insertData = 1
+
+				table = TEXT
+				table.value = {register:extKey}_{register:contentId}.zeigeTabelle('{register:extKey}_{register:contentId}');
+				table.insertData = 1
+			}
+		}
+	}
+
+}
+
+plugin.tx_larspfussballdejs_pi1._CSS_DEFAULT_STYLE (
 	/* Elemente ausblenden */
 	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPItoplogo,
 	.tx-larspfussballdejs-pi1 #fussballdeAPI table#edKopf,
@@ -13,13 +72,13 @@
 		height: 0 !important;
 		display: none !important;
 	}
-    
+
 	/* Volle Breite */
 	.tx-larspfussballdejs-pi1 #fussballdeAPI,
 	.tx-larspfussballdejs-pi1 #fussballdeAPI table.edKerntabelle {
 		width: 100% !important;
 	}
-    
+
 	/* Schriftfarbe */
 	.tx-larspfussballdejs-pi1 #fussballdeAPI,
 	.tx-larspfussballdejs-pi1 #fussballdeAPI div.verlegteSpiele,
@@ -28,7 +87,7 @@
 		font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif !important;
 		font-size: 100.01% !important;
 	}
-	
+
 
 	/**
 	 * Tabellen
@@ -56,8 +115,8 @@
 		background: #444 !important;
 		color: #fff !important;
 	}
-	
-	
+
+
 	/**
 	 * Links
 	 */
@@ -74,8 +133,8 @@
 		color: #182E7A !important;
 		text-decoration: underline !important;
 	}
-	
-	
+
+
 	/**
 	 * Quelle
 	 */
@@ -84,4 +143,4 @@
 		text-align: right;
 		color: #999999;
 	}
-}
+)

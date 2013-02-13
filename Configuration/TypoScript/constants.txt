@@ -1,0 +1,10 @@
+plugin.tx_larspfussballdejs_pi1 {
+	properties {
+		key =
+		competitionId =
+		season = current
+		season.swapDay =  1
+		season.swapMonth = 8
+		display = games
+	}
+}

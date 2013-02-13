@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-02-12T14:25:01Z" product-name="larsp_fussballde_js">
+		<header/>
+		<body>
+			<trans-unit id="list_type_pi1" xml:space="preserve" approved="yes">
+				<source>Fussball.de JavaScript</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general" xml:space="preserve" approved="yes">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_key" xml:space="preserve" approved="yes">
+				<source>Key (Example: A427Z97897S2F9FA2...)</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_competitionid" xml:space="preserve" approved="yes">
+				<source>CompetitionId (Example: 350100)</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_season" xml:space="preserve" approved="yes">
+				<source>Season (Example: 1314 for 2013/14, or current for current season)</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display" xml:space="preserve" approved="yes">
+				<source>Display</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_default" xml:space="preserve" approved="yes">
+				<source>default</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_games" xml:space="preserve" approved="yes">
+				<source>Games</source>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_table" xml:space="preserve" approved="yes">
+				<source>Table</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-02-12T14:25:01Z" product-name="larsp_fussballde_js">
+		<header/>
+		<body>
+			<trans-unit id="loading" xml:space="preserve" approved="yes">
+				<source>Loading data...</source>
+				<target>Lade Daten...</source>
+			</trans-unit>
+			<trans-unit id="source" xml:space="preserve" approved="yes">
+				<source>Source: Fussball.de</source>
+				<target>Quelle: Fussball.de</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

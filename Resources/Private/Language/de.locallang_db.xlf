@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-02-12T14:25:01Z" product-name="larsp_fussballde_js">
+		<header/>
+		<body>
+			<trans-unit id="list_type_pi1" xml:space="preserve" approved="yes">
+				<source>Fussball.de JavaScript</source>
+				<target state="translated">Fussball.de JavaScript</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general" xml:space="preserve" approved="yes">
+				<source>General</source>
+				<target state="translated">General</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_key" xml:space="preserve" approved="yes">
+				<source>Key (Example: A427Z97897S2F9FA2...)</source>
+				<target state="translated">Schluessel (Beispiel: A427Z97897S2F9FA2...)</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_competitionid" xml:space="preserve" approved="yes">
+				<source>CompetitionId (Example: 350100)</source>
+				<target state="translated">WettbewerbId (Beispiel: 350100)</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_season" xml:space="preserve" approved="yes">
+				<source>Season (Example: 1314 for 2013/14, or current for generated number)</source>
+				<target state="translated">Saison (Beispiel: 1314 fuer 2013/14, oder current fuer die aktuelle Saison)</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display" xml:space="preserve" approved="yes">
+				<source>Display</source>
+				<target state="translated">Anzeige</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_default" xml:space="preserve" approved="yes">
+				<source>default</source>
+				<target state="translated">Standard</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_games" xml:space="preserve" approved="yes">
+				<source>Games</source>
+				<target state="translated">Spieltag</target>
+			</trans-unit>
+			<trans-unit id="pi-flexform_sheet-general_display_table" xml:space="preserve" approved="yes">
+				<source>Table</source>
+				<target state="translated">Tabelle</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

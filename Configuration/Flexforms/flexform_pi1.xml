@@ -1,0 +1,74 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+					<key>
+						<TCEforms>
+							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_key</label>
+							<config>
+								<type>input</type>
+								<size>64</size>
+							</config>
+						</TCEforms>
+					</key>
+
+					<competitionid>
+						<TCEforms>
+							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_competitionid</label>
+							<config>
+								<type>input</type>
+								<size>10</size>
+							</config>
+						</TCEforms>
+					</competitionid>
+
+					<season>
+						<TCEforms>
+							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_season</label>
+							<config>
+								<type>input</type>
+								<size>4</size>
+							</config>
+						</TCEforms>
+					</season>
+
+					<display>
+						<TCEforms>
+							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_default</numIndex>
+										<numIndex index="1">default</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_games</numIndex>
+										<numIndex index="1">games</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_table</numIndex>
+										<numIndex index="1">table</numIndex>
+									</numIndex>
+								</items>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<size>3</size>
+							</config>
+						</TCEforms>
+					</display>
+
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
