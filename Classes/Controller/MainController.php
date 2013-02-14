@@ -79,12 +79,27 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			return $this->view->render();
 		}
 
+		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
+		$this->addArrayToRegister($typoScriptObject, $properties);
+
 		$this->view
 			->assign('properties', $properties)
 			->assign('missingProperties', $missingProperties)
 			->assign('jsFiles',  $this->getJavaScriptFiles($extensionTypoScript, $contentObject));
+
+		$content = $this->view->render();
+
+		$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
+
+		return $content;
 	}
 
+	/**
+	 * Returns required properties which are not in the parameter $properties.
+	 *
+	 * @param array $properties
+	 * @return array
+	 */
 	protected function getMissingProperties($properties) {
 		$missing = array();
 		foreach ($this->requiredProperties as $key) {
@@ -95,6 +110,11 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		return $missing;
 	}
 
+	/**
+	 * @param array $extensionTypoScript
+	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
+	 * @return array
+	 */
 	protected function getProperties($extensionTypoScript, $contentObject) {
 		$typoScriptProperties = $this->getTypoScriptProperties($contentObject, $extensionTypoScript);
 		$flexFormProperties = $this->flexFormService->convertFlexFormContentToArray($contentObject->data['pi_flexform']);
@@ -124,6 +144,11 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		return $properties;
 	}
 
+	/**
+	 * @param array $extensionTypoScript
+	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
+	 * @return array
+	 */
 	protected function getJavaScriptFiles($extensionTypoScript, $contentObject) {
 		$configuration = $extensionTypoScript['includeJs.'];
 		$files = array();
@@ -139,7 +164,12 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		}
 		return $files;
 	}
-	
+
+	/**
+	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
+	 * @param array $extensionTypoScript
+	 * @return array
+	 */
 	protected function getTypoScriptProperties($contentObject, $extensionTypoScript) {
 		$properties = array();
 
@@ -168,6 +198,11 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		return $properties;
 	}
 
+	/**
+	 * @param array $flexFormProperties
+	 * @param array $correctPropertyKeys
+	 * @return array
+	 */
 	protected function patchFlexFormProperties($flexFormProperties, $correctPropertyKeys) {
 		$newProperties = array();
 
@@ -208,5 +243,17 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			$value = $contentObject->stdWrap('', $configuration[$key . '.']);
 		}
 		return $value;
+	}
+
+	/**
+	 * @param \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $typoScriptObject
+	 * @param array $array
+	 * @return MainController
+	 */
+	protected function addArrayToRegister($typoScriptObject, $array) {
+		foreach ($array as $key => $value) {
+			$typoScriptObject->register[$key] = $value;
+		}
+		return $this;
 	}
 }

@@ -40,6 +40,7 @@ class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\Ab
 	 */
 	public function render() {
 		$content = '';
+		$error = FALSE;
 
 		/** @var $flashMessages \TYPO3\CMS\Core\Messaging\FlashMessage[] */
 		$flashMessages = $this->controllerContext->getFlashMessageContainer()->getAllMessagesAndFlush();
@@ -47,37 +48,27 @@ class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\Ab
 			foreach ($flashMessages as $flashMessage) {
 				$content .= $flashMessage->render();
 				if ($flashMessage->getSeverity() == \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR) {
-					return $content;
+					$error = TRUE;
 				}
 			}
 		}
 
-		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
-		$contentObject = &$GLOBALS['TSFE']->cObj;
-		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-		$typoScriptObject = &$GLOBALS['TSFE'];
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
+		if (!$error) {
+			/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+			$contentObject = &$GLOBALS['TSFE']->cObj;
+			/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+			$typoScriptObject = &$GLOBALS['TSFE'];
+			$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
 
-		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
-		$this->addArrayToRegister($typoScriptObject, $this->variables['properties']);
-
-		if (!empty($this->variables['jsFiles']) && is_array($this->variables['jsFiles'])) {
-			foreach ($this->variables['jsFiles'] as $jsFile) {
-				$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
+			if (!empty($this->variables['jsFiles']) && is_array($this->variables['jsFiles'])) {
+				foreach ($this->variables['jsFiles'] as $jsFile) {
+					$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
+				}
 			}
+
+			$content .= $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
 		}
-
-		$content .= $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
-
-		$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
 
 		return '<div class="tx-larspfussballdejs-pi1">' . $content . '</div>';
-	}
-
-	protected function addArrayToRegister($typoScriptObject, $array) {
-		foreach ($array as $key => $value) {
-			$typoScriptObject->register[$key] = $value;
-		}
-		return $this;
 	}
 }
