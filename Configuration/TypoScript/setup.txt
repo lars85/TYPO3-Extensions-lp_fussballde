@@ -31,7 +31,7 @@ plugin.tx_larspfussballdejs_pi1 {
 
 		# Quellen Anzeige
 		20 = TEXT
-		20.value = <div class="{register:extKey}_quelle">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
+		20.value = <div class="{register:extKey}_source">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
 		20.insertData = 1
 
 		# Javascript
@@ -148,11 +148,9 @@ plugin.tx_larspfussballdejs_pi1._CSS_DEFAULT_STYLE (
 	 * Quelle
 	 */
 
-	.larsp_fussballde_js_quelle #fussballdeAPI #edRenderInfo {
-		padding-left: 0;
-	}
-
-	.larsp_fussballde_js_quelle {
+	.larsp_fussballde_js_source,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI #edRenderInfo {
+		padding-right: 0 !important;
 		text-align: right;
 		color: #999999;
 	}
