@@ -31,7 +31,7 @@ plugin.tx_larspfussballdejs_pi1 {
 
 		# Quellen Anzeige
 		20 = TEXT
-		20.value = <div class="{register:extKey}_quelle">{{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
+		20.value = <div class="{register:extKey}_quelle">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
 		20.insertData = 1
 
 		# Javascript
@@ -76,7 +76,8 @@ plugin.tx_larspfussballdejs_pi1._CSS_DEFAULT_STYLE (
 	.tx-larspfussballdejs-pi1 #fussballdeAPI #edBegegnungsliste .SpieltagSuchblock,
 	.tx-larspfussballdejs-pi1 #fussballdeAPI div#edReiternavigation,
 	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPItoplogo,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPISuche {
+	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPISuche,
+	.tx-larspfussballdejs-pi1 #fussballdeAPI #edRenderInfo .edScreen {
 		height: 0 !important;
 		display: none !important;
 	}
