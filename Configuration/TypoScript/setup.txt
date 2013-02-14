@@ -1,4 +1,10 @@
 plugin.tx_larspfussballdejs_pi1 {
+	view {
+		templateRootPath = {$plugin.tx_larspfussballdejs_pi1.view.templateRootPath}
+		partialRootPath = {$plugin.tx_larspfussballdejs_pi1.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_larspfussballdejs_pi1.view.layoutRootPath}
+	}
+
 	properties {
 		key = {$plugin.tx_larspfussballdejs_pi1.properties.key}
 		competitionId = {$plugin.tx_larspfussballdejs_pi1.properties.competitionId}

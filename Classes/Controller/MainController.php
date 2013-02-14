@@ -59,43 +59,32 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$typoScriptObject = &$GLOBALS['TSFE'];
 
 		if (empty($typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'])) {
-			/** @var $flashMessageObject \TYPO3\CMS\Core\Messaging\FlashMessage */
-			$flashMessageObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-				'TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			$this->flashMessageContainer->add(
 				'Missing configuration: plugin.tx_larspfussballdejs_pi1',
 				'Fussball.de JavaScript',
 				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
-			return $flashMessageObject->render();
+			return $this->view->render();
 		}
 		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
 
 		$properties = $this->getProperties($extensionTypoScript, $contentObject);
 		$missingProperties = $this->getMissingProperties($properties);
 		if (count($missingProperties)) {
-			/** @var $flashMessageObject \TYPO3\CMS\Core\Messaging\FlashMessage */
-			$flashMessageObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-				'TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			$this->flashMessageContainer->add(
 				'Missing properties: ' . join(', ', $missingProperties),
 				'Fussball.de JavaScript',
 				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
-			return $flashMessageObject->render();
+			return $this->view->render();
 		}
-
-		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
-		$this->addArrayToRegister($typoScriptObject, $properties);
+		$this->view->assign('properties', $properties);
+		$this->view->assign('missingProperties', $missingProperties);
 
 		$jsFiles = $this->getJavaScriptFiles($extensionTypoScript, $contentObject);
 		foreach ($jsFiles as $jsFile) {
 			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
-
-		$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
-
-		$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
-
-		return '<div class="tx-larspfussballdejs-pi1">' . $content . '</div>';
 	}
 
 	protected function getMissingProperties($properties) {
@@ -135,13 +124,6 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		}
 
 		return $properties;
-	}
-
-	protected function addArrayToRegister($typoScriptObject, $array) {
-		foreach ($array as $key => $value) {
-			$typoScriptObject->register[$key] = $value;
-		}
-		return $this;
 	}
 
 	protected function getJavaScriptFiles($extensionTypoScript, $contentObject) {
