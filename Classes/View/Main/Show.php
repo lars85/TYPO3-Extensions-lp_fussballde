@@ -58,14 +58,14 @@ class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\Ab
 		$typoScriptObject = &$GLOBALS['TSFE'];
 		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
 
+		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
+		$this->addArrayToRegister($typoScriptObject, $this->variables['properties']);
+
 		if (!empty($this->variables['jsFiles']) && is_array($this->variables['jsFiles'])) {
 			foreach ($this->variables['jsFiles'] as $jsFile) {
 				$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 			}
 		}
-
-		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
-		$this->addArrayToRegister($typoScriptObject, $this->variables['properties']);
 
 		$content .= $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
 
