@@ -148,6 +148,10 @@ plugin.tx_larspfussballdejs_pi1._CSS_DEFAULT_STYLE (
 	 * Quelle
 	 */
 
+	.larsp_fussballde_js_quelle #fussballdeAPI #edRenderInfo {
+		padding-left: 0;
+	}
+
 	.larsp_fussballde_js_quelle {
 		text-align: right;
 		color: #999999;
