@@ -78,13 +78,11 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			);
 			return $this->view->render();
 		}
-		$this->view->assign('properties', $properties);
-		$this->view->assign('missingProperties', $missingProperties);
 
-		$jsFiles = $this->getJavaScriptFiles($extensionTypoScript, $contentObject);
-		foreach ($jsFiles as $jsFile) {
-			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
-		}
+		$this->view
+			->assign('properties', $properties)
+			->assign('missingProperties', $missingProperties)
+			->assign('jsFiles',  $this->getJavaScriptFiles($extensionTypoScript, $contentObject));
 	}
 
 	protected function getMissingProperties($properties) {
