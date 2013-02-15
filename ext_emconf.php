@@ -1,7 +1,13 @@
 <?php
 
 /***************************************************************
- * Extension Manager/Repository config file for ext: "larsp_fussballde_js"
+ * Extension Manager/Repository config file for ext "larsp_fussballde_js".
+ *
+ * Auto generated 14-02-2013 22:41
+ *
+ * Manual updates:
+ * Only the data in the array - everything else is removed by next
+ * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
