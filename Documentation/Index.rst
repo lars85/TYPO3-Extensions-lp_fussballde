@@ -8,104 +8,63 @@
 
 .. _start:
 
-=================
-Extension Name
-=================
+===================
+larsp_fussballde_js
+===================
 
 :Extension name:
-    Fussball.de JavaScript
+	Fussball.de JavaScript
 
 :Extension key:
-    larsp_fussballde_js
+	larsp_fussballde_js
 
 :Version:
-    2.0.1
+	2.0.1
 
 :Description:
-    Bindet Tabellen und Spielplaene von Fussball.de ueber JavaScript ein. Anmeldung auf Fussball.de ist noetig!
+	Bindet Tabellen und Spielplaene von Fussball.de ueber JavaScript ein. Anmeldung auf Fussball.de ist noetig!
 
 :Language:
-    de
+	de
 
 :Author:
-    Lars Peipmann
+	Lars Peipmann
 
 :Creation:
-    2013-02-14
+	2013-02-14
 
 :License:
-    Open Content License available from `www.opencontent.org/opl.shtml
-    <http://www.opencontent.org/opl.shtml>`_
+	Open Content License available from `www.opencontent.org/opl.shtml
+	<http://www.opencontent.org/opl.shtml>`_
 
 :Rendered:
-    |today|
+	|today|
 
-The content of this document is related to TYPO3,
-
-a GNU/GPL CMS/Framework available from `www.typo3.org
-<http://www.typo3.org/>`_
+The content of this document is related to TYPO3, a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_
 
 
 **Table of Contents**
 
 .. toctree::
-    :maxdepth: 5
-    :titlesonly:
-    :glob:
-    AdministratorManual/Index
-    TyposcriptReference/Index
+	:maxdepth: 5
+	:titlesonly:
+	:glob:
+
+	Screenshots/Index
+	AdministratorManual/Index
+	TyposcriptReference/Index
 
 
 What does it do?
-=================
+================
 
 Fussball.de bietet einen Service an, mit dem es möglich ist, aktuelle Ergebnisse und Tabellen von lokalen, sowie Bundesligavereinen auf der eigenen Homepage anzeigen zu lassen.
 
 Diese Extension hilft diesen Service auf TYPO3-Seiten einzubinden.
 
 
-Screenshots
-=================
-
-Die folgenden Bilder veranschaulichen die Ausgabe des Plugins im Frontend:
-
-    .. figure:: Images/plugin.png
-        :width: 552px
-        :alt: Plugin Konfiguration
-
-            Alle Einstellungen können über das Plugin oder TypoScript angepasst werden.
-
-
-    .. figure:: Images/spieltag.png
-        :width: 731px
-        :alt: Spieltag
-
-            Anzeige eines Spieltags mit CSS
-
-
-    .. figure:: Images/spieltagOhneCss.png
-        :width: 520px
-        :alt: Spieltag ohne CSS
-
-            Anzeige eines Spieltags ohne CSS
-
-
-    .. figure:: Images/tabelle.png
-        :width: 738px
-        :alt: Tabelle
-
-            Anzeige einer Tabelle mit CSS
-
-
-    .. figure:: Images/tabelleOhneCss.png
-        :width: 515px
-        :alt: Tabelle ohne CSS
-
-            Anzeige einer Tabelle ohne CSS
-
-
 Fehler & Anregungen melden
------------------------------------
+--------------------------
 
 Fehler und Anregungen koennen jederzeit sehr gerne im `Bug Tracker`_ gemeldet werden.
 
