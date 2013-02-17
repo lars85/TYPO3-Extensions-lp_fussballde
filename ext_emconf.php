@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "larsp_fussballde_js".
  *
- * Auto generated 14-02-2013 22:41
+ * Auto generated 15-02-2013 12:22
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '2.0.1',
+	'version' => '2.0.2',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => 'undefined',
