@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'TYPO3.' . $_EXTKEY,
+	'LarsPeipmann.' . $_EXTKEY,
 	'pi1',
 	array(
 		'Main' => 'show',

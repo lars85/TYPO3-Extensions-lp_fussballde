@@ -1,6 +1,6 @@
 <?php
 
-namespace TYPO3\LarspFussballdeJs\Controller;
+namespace LarsPeipmann\LarspFussballdeJs\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -58,21 +58,21 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
 		$typoScriptObject = &$GLOBALS['TSFE'];
 
-		if (empty($typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'])) {
+		if (empty($typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'])) {
 			$this->flashMessageContainer->add(
-				'Missing configuration: plugin.tx_larspfussballdejs_pi1',
+				'Missing configuration: plugin.tx_larspfussballdejs',
 				'Fussball.de JavaScript',
 				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
 			return $this->view->render();
 		}
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
+		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'];
 
 		$properties = $this->getProperties($extensionTypoScript, $contentObject);
 		$missingProperties = $this->getMissingProperties($properties);
 		if (count($missingProperties)) {
 			$this->flashMessageContainer->add(
-				'Missing properties: ' . join(', ', $missingProperties),
+				'Missing properties: <b>' . join(', ', $missingProperties) . '</b><br />Current Properties: ' . var_export($properties, TRUE),
 				'Fussball.de JavaScript',
 				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);

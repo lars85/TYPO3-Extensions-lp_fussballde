@@ -1,6 +1,6 @@
 <?php
 
-//namespace TYPO3\LarspFussballdeJs\View\Main;
+//namespace LarsPeipmann\LarspFussballdeJs\View\Main;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-//class show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+//class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 	/**
 	 * Renders the view
@@ -58,7 +58,7 @@ class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\Ab
 			$contentObject = &$GLOBALS['TSFE']->cObj;
 			/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
 			$typoScriptObject = &$GLOBALS['TSFE'];
-			$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs_pi1.'];
+			$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'];
 
 			if (!empty($this->variables['jsFiles']) && is_array($this->variables['jsFiles'])) {
 				foreach ($this->variables['jsFiles'] as $jsFile) {

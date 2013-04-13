@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="loading" xml:space="preserve" approved="yes">
 				<source>Loading data...</source>
-				<target>Lade Daten...</source>
+				<target>Lade Daten...</target>
 			</trans-unit>
 			<trans-unit id="source" xml:space="preserve" approved="yes">
 				<source>Source: Fussball.de</source>

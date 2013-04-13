@@ -1,4 +1,4 @@
-plugin.tx_larspfussballdejs_pi1 {
+plugin.tx_larspfussballdejs {
 	view {
 		# cat=plugin.tx_larspfussballdejs/file; type=string; label=Path to template root (FE)
 		templateRootPath = EXT:larsp_fussballde_js/Resources/Private/Templates/
