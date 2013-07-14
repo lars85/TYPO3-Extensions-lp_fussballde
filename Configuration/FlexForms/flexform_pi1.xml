@@ -1,74 +1,68 @@
 <T3DataStructure>
 	<meta>
 		<langDisable>1</langDisable>
+		<langChildren>1</langChildren>
 	</meta>
-	<sheets>
-		<sDEF>
-			<ROOT>
+	<ROOT>
+		<type>array</type>
+		<el>
+
+			<settings.attributes.schluessel>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general</sheetTitle>
+					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.schluessel</label>
+					<config>
+						<type>input</type>
+						<size>28</size>
+					</config>
 				</TCEforms>
-				<type>array</type>
-				<el>
+			</settings.attributes.schluessel>
 
-					<key>
-						<TCEforms>
-							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_key</label>
-							<config>
-								<type>input</type>
-								<size>64</size>
-							</config>
-						</TCEforms>
-					</key>
+			<settings.attributes.wettbewerbId>
+				<TCEforms>
+					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.wettbewerbId</label>
+					<config>
+						<type>input</type>
+						<size>28</size>
+					</config>
+				</TCEforms>
+			</settings.attributes.wettbewerbId>
 
-					<competitionid>
-						<TCEforms>
-							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_competitionid</label>
-							<config>
-								<type>input</type>
-								<size>10</size>
-							</config>
-						</TCEforms>
-					</competitionid>
+			<settings.attributes.mandantId>
+				<TCEforms>
+					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.mandantId</label>
+					<config>
+						<type>input</type>
+						<size>8</size>
+					</config>
+				</TCEforms>
+			</settings.attributes.mandantId>
 
-					<season>
-						<TCEforms>
-							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_season</label>
-							<config>
-								<type>input</type>
-								<size>4</size>
-							</config>
-						</TCEforms>
-					</season>
+			<settings.attributes.display>
+				<TCEforms>
+					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display</label>
+					<config>
+						<type>select</type>
+						<items type="array">
+							<numIndex index="0" type="array">
+								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.0</numIndex>
+								<numIndex index="1">0</numIndex>
+							</numIndex>
+							<numIndex index="1" type="array">
+								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.1</numIndex>
+								<numIndex index="1">1</numIndex>
+							</numIndex>
+							<numIndex index="2" type="array">
+								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.2</numIndex>
+								<numIndex index="1">2</numIndex>
+							</numIndex>
+						</items>
+						<minitems>1</minitems>
+						<maxitems>1</maxitems>
+						<size>1</size>
+					</config>
+				</TCEforms>
+			</settings.attributes.display>
 
-					<display>
-						<TCEforms>
-							<label>LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display</label>
-							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_default</numIndex>
-										<numIndex index="1">default</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_games</numIndex>
-										<numIndex index="1">games</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang_db.xlf:pi-flexform_sheet-general_display_table</numIndex>
-										<numIndex index="1">table</numIndex>
-									</numIndex>
-								</items>
-								<minitems>1</minitems>
-								<maxitems>1</maxitems>
-								<size>3</size>
-							</config>
-						</TCEforms>
-					</display>
-
-				</el>
-			</ROOT>
-		</sDEF>
-	</sheets>
+		</el>
+	</ROOT>
 </T3DataStructure>

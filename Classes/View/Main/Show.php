@@ -1,7 +1,5 @@
 <?php
 
-//namespace LarsPeipmann\LarspFussballdeJs\View\Main;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -27,48 +25,50 @@
  ***************************************************************/
 
 /**
- * @package LarspFussballJs
+ * The main controller for the page backend module.
+ *
+ * @package LpFussballde
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
+//Namespace LarsPeipmann\LpFussballde\View\Main;
 //class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-class Tx_LarspFussballdeJs_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+class Tx_LpFussballde_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 	/**
 	 * Renders the view
 	 *
 	 * @return string
 	 */
 	public function render() {
-		$content = '';
-		$error = FALSE;
+		$fields = array();
+		$this->mergeIntoOneArray($this->variables, $fields);
 
-		/** @var $flashMessages \TYPO3\CMS\Core\Messaging\FlashMessage[] */
-		$flashMessages = $this->controllerContext->getFlashMessageContainer()->getAllMessagesAndFlush();
-		if (count($flashMessages)) {
-			foreach ($flashMessages as $flashMessage) {
-				$content .= $flashMessage->render();
-				if ($flashMessage->getSeverity() == \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR) {
-					$error = TRUE;
-				}
-			}
+		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+		$contentObject = &$GLOBALS['TSFE']->cObj;
+		$contentObject->start($fields);
+
+		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+		$typoScriptObject = &$GLOBALS['TSFE'];
+		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballde.'];
+
+		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
+		$jsFiles = TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
+		foreach ($jsFiles as $jsFile) {
+			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
 
-		if (!$error) {
-			/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
-			$contentObject = &$GLOBALS['TSFE']->cObj;
-			/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-			$typoScriptObject = &$GLOBALS['TSFE'];
-			$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'];
+		$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
 
-			if (!empty($this->variables['jsFiles']) && is_array($this->variables['jsFiles'])) {
-				foreach ($this->variables['jsFiles'] as $jsFile) {
-					$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
-				}
+		return $content;
+	}
+
+	protected function mergeIntoOneArray($variables, &$fields) {
+		foreach ($variables as $key => $value) {
+			if (is_array($value)) {
+				$this->mergeIntoOneArray($value, $fields);
+			} else {
+				$fields[$key] = htmlspecialchars($value, ENT_HTML5);
 			}
-
-			$content .= $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
 		}
-
-		return '<div class="tx-larspfussballdejs-pi1">' . $content . '</div>';
 	}
 }

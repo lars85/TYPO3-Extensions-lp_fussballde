@@ -1,164 +1,171 @@
-plugin.tx_larspfussballdejs {
-	view {
-		templateRootPath = {$plugin.tx_larspfussballdejs.view.templateRootPath}
-		partialRootPath = {$plugin.tx_larspfussballdejs.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_larspfussballdejs.view.layoutRootPath}
-	}
-
-	properties {
-		key = {$plugin.tx_larspfussballdejs.properties.key}
-		competitionId = {$plugin.tx_larspfussballdejs.properties.competitionId}
-		season = {$plugin.tx_larspfussballdejs.properties.season}
-		season.swapMonth = {$plugin.tx_larspfussballdejs.properties.season.swapMonth}
-		season.swapDay = {$plugin.tx_larspfussballdejs.properties.season.swapDay}
-		display = {$plugin.tx_larspfussballdejs.properties.display}
-	}
-
-	# Includes an array of Javascript files
+plugin.tx_lpfussballde {
+	# Includes a list of Javascript files (separated by new lines)
+	includeJs = COA
 	includeJs {
-		main {
-			data = register:key
-			wrap = http://static.fussball.de/fbdeAPI/js/fbdeAPIFunctions.js?schluessel=|
+		10 = LOAD_REGISTER
+		10 {
+			# Schlüssel
+			lpFussballde_schluessel.cObject = CASE
+			lpFussballde_schluessel.cObject {
+				key.data = getenv:HTTP_HOST
+				# Replace all points with underscore characters in domain
+				key.stdWrap.replacement.10 {
+					search = .
+					replace = _
+				}
+				/*
+				domain_de = TEXT
+				domain_de.value = ABCD..
+				*/
+				default = TEXT
+				default.value = {$plugin.tx_lpfussballde.settings.attributes.schluessel}
+			}
+			lpFussballde_schluessel.override.field = schluessel
 		}
+
+		20 = TEXT
+		20 {
+			data = register:lpFussballde_schluessel
+			wrap = http://ergebnisdienst.fussball.de/static/egm//js/egmWidget.js?schluessel=|
+			append = TEXT
+			append.char = 10
+		}
+
+		100 = RESTORE_REGISTER
 	}
 
 	renderObj = COA
 	renderObj {
-		# Lade Daten Anzeige
-		10 = TEXT
-		10.value = <div id="{register:extKey}_{register:contentId}">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:loading}</div>
-		10.insertData = 1
+		10 = LOAD_REGISTER
+		10 {
+			lpFussballde_id = {field:extensionKeyWithoutUnderl}_c{field:contentUid}
+			lpFussballde_id.insertData = 1
 
-		# Quellen Anzeige
-		20 = TEXT
-		20.value = <div class="{register:extKey}_source">{LLL:EXT:larsp_fussballde_js/Resources/Private/Language/locallang.xlf:source}</div>
-		20.insertData = 1
+			# Wettbewerb
+			lpFussballde_wettbewerbId = {$plugin.tx_lpfussballde.settings.attributes.wettbewerbId}
+			lpFussballde_wettbewerbId.override.field = wettbewerbId
 
-		# Javascript
-		30 = COA
-		30 {
-			wrap = <script type="text/javascript">|</script>
+			# Mandant
+			lpFussballde_mandantId = {$plugin.tx_lpfussballde.settings.attributes.mandantId}
+			lpFussballde_mandantId.override.field = mandantId
 
-			10 = TEXT
-			10.value = var {register:extKey}_{register:contentId} = new fussballdeAPI();
-			10.insertData = 1
+			# Display
+			lpFussballde_display = {$plugin.tx_lpfussballde.settings.attributes.display}
+			lpFussballde_display.override.field = display
+		}
 
-			20 = TEXT
-			20.value = {register:extKey}_{register:contentId}.setzeSaison('{register:season}');
-			20.insertData = 1
+		# Renders the content of the plugin
+		20 = COA
+		20 {
+			stdWrap.dataWrap = <div class="tx-{field:extensionKeyWithoutUnderl}-pi1 tx-{field:extensionKeyWithoutUnderl}-display{register:lpFussballde_display}">|</div>
 
+			# Error messages
+			20 = COA
+			20 {
+				stdWrap.wrap = <ul class="flash-messages">|</ul>
+				stdWrap.required = 1
+
+				10 = TEXT
+				10 {
+					wrap = <li class="error">|</li>
+					noTrimWrap = |Missing Attribute: ||
+					value = wettbewerbId
+					if.isFalse.data = register:lpFussballde_wettbewerbId
+				}
+				20 < .10
+				20 {
+					value = mandantId
+					if.isFalse.data = register:lpFussballde_mandantId
+				}
+				30 < .10
+				30 {
+					value = display
+					if.isFalse.data = register:lpFussballde_display
+				}
+			}
+
+			# Main div container with loading text
 			30 = TEXT
-			30.value = {register:extKey}_{register:contentId}.setzeWettbewerbID('{register:competitionId}');
-			30.insertData = 1
+			30 {
+				dataWrap = <div id="{register:lpFussballde_id}">|</div>
+				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:loading
+			}
 
-			40 = CASE
+			# Source
+			40 = TEXT
 			40 {
-				key.data = register:display
+				wrap = <div class="source">|</div>
+				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:source
+			}
 
-				games = TEXT
-				games.value = {register:extKey}_{register:contentId}.zeigeWettbewerb('{register:extKey}_{register:contentId}');
-				games.insertData = 1
+			# Javascript
+			50 = COA
+			50 {
+				wrap = <script type="text/javascript">|</script>
 
-				table = TEXT
-				table.value = {register:extKey}_{register:contentId}.zeigeTabelle('{register:extKey}_{register:contentId}');
-				table.insertData = 1
+				10 = TEXT
+				10.value = var {register:lpFussballde_id} = new fussballdeAPI();
+				10.insertData = 1
+				//10.append = TEXT
+				//10.append.char = 10
+
+				20 < .10
+				20.value = {register:lpFussballde_id}.setzeWettbewerb('{register:lpFussballde_wettbewerbId}');
+
+				30 < .10
+				30.value = {register:lpFussballde_id}.setzeMandant('{register:lpFussballde_mandantId}');
+
+				40 = CASE
+				40 {
+					stdWrap.dataWrap = {register:lpFussballde_id}.zeige|('{register:lpFussballde_id}');
+					key.data = register:lpFussballde_display
+
+					1 = TEXT
+					1.value = Begegnungen
+
+					2 = TEXT
+					2.value = Tabelle
+				}
 			}
 		}
+
+		/*
+		28 = TEXT
+		28.data = debug:data
+		29 = TEXT
+		29.data = debug:register
+		*/
+
+		30 = RESTORE_REGISTER
 	}
 
 }
 
-plugin.tx_larspfussballdejs._CSS_DEFAULT_STYLE (
-	/* Elemente ausblenden */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPItoplogo,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI table#edKopf,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI iframe,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI #edBegegnungsliste .SpieltagSuchblock,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div#edReiternavigation,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPItoplogo,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div.fbdeAPISuche,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI #edRenderInfo .edScreen {
-		height: 0 !important;
+plugin.tx_lpfussballde._CSS_DEFAULT_STYLE (
+	/* Hide elements */
+	.tx-lpfussballde-pi1 #fussballdeAPI,
+	.tx-lpfussballde-pi1 .egmTab,
+	.tx-lpfussballde-pi1 .egmIconMatchReport,
+	.tx-lpfussballde-pi1 .egmMatchMediaLink,
+	.tx-lpfussballde-display2 .egmSnippetControl,
+	.tx-lpfussballde-pi1 iframe {
 		display: none !important;
+		height: 0 !important;
 	}
 
-	/* Volle Breite */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI table.edKerntabelle {
+	/* 100% width for the table */
+	.tx-lpfussballde-pi1 div.egmMain {
 		width: 100% !important;
 	}
 
-	/* Schriftfarbe */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div.verlegteSpiele,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI div.TurnierTabelle {
-		color: #444 !important;
-		font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif !important;
-		font-size: 100.01% !important;
+	/* Background for controls container */
+	.tx-lpfussballde-pi1 .egmSnippetControl {
+		background: #CCCCCC;
 	}
 
-
-	/**
-	 * Tabellen
-	 */
-
-	/* Rand entfernen */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI {
-		border: none !important;
-	}
-
-	/* Hintergrund bei ungeraden Zeilen */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPIRowInactA,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI .edLiInactA {
-		background: #fff !important;
-	}
-
-	/* Hintergrund bei geraden Zeilen */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI .fbdeAPIRowInactB,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI .edLiInactB {
-		background: #eee !important;
-	}
-
-	/* Titelzeile */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI th {
-		background: #444 !important;
-		color: #fff !important;
-	}
-
-
-	/**
-	 * Links
-	 */
-
-	/* normale Links */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI a {
-		color: #4D87C7 !important;
-	}
-
-	/* Links bei Mouseover */
-	.tx-larspfussballdejs-pi1 #fussballdeAPI a:focus,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI a:hover,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI a:active {
-		color: #182E7A !important;
-		text-decoration: underline !important;
-	}
-
-
-	/**
-	 * Quelle
-	 */
-
-	.larsp_fussballde_js_source,
-	.tx-larspfussballdejs-pi1 #fussballdeAPI #edRenderInfo {
-		color: #bbc0bf;
-		font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif !important;
-		font-size: 11px !important;
-	}
-	.tx-larspfussballdejs-pi1 #fussballdeAPI #edRenderInfo {
-		float: left;
-		padding: 5px 0 0 0 !important;
-	}
-	.larsp_fussballde_js_source {
+	/* Source */
+	.tx-lpfussballde-pi1 > .source {
+		color: #CCCCCC;
 		text-align: right;
 	}
 )

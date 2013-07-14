@@ -14,35 +14,35 @@ Screenshots
 Die folgenden Bilder veranschaulichen die Ausgabe des Plugins im Frontend:
 
 .. figure:: Images/plugin.png
-	:width: 552px
+	:width: 598px
 	:alt: Plugin Konfiguration
 
 	Alle Einstellungen können über das Plugin oder TypoScript angepasst werden.
 
 
-.. figure:: Images/spieltag.png
-	:width: 731px
+.. figure:: Images/begegnungen.png
+	:width: 1083px
 	:alt: Spieltag
 
-	Anzeige eines Spieltags mit CSS.
+	Anzeige der Begegnungen mit CSS.
 
 
-.. figure:: Images/spieltagOhneCss.png
-	:width: 520px
+.. figure:: Images/begegnungenOhneCss.png
+	:width: 504px
 	:alt: Spieltag ohne CSS
 
-	Anzeige eines Spieltags ohne CSS.
+	Anzeige der Begegnungen ohne CSS.
 
 
 .. figure:: Images/tabelle.png
-	:width: 738px
+	:width: 1083px
 	:alt: Tabelle
 
 	Anzeige einer Tabelle mit CSS.
 
 
 .. figure:: Images/tabelleOhneCss.png
-	:width: 515px
+	:width: 504px
 	:alt: Tabelle ohne CSS
 
 	Anzeige einer Tabelle ohne CSS.

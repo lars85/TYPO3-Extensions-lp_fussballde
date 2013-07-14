@@ -1,18 +1,18 @@
 <?php
 
 /***************************************************************
- * Extension Manager/Repository config file for ext "larsp_fussballde_js".
+ * Extension Manager/Repository config file for ext "lp_fussballde".
  *
- * Auto generated 15-02-2013 12:22
+ * Auto generated 14-07-2013 19:10
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
-	'title' => 'Fussball.de JavaScript',
-	'description' => 'Bindet Tabellen und Spielplaene von Fussball.de ueber JavaScript ein. Anmeldung auf Fussball.de ist noetig!',
+$EM_CONF[$_EXTKEY] = array (
+	'title' => 'Fussball.de',
+	'description' => 'Bindet Begegnungen und Spielpläne von Fussball.de über JavaScript ein. Anmeldung auf Fussball.de ist nötig! Doku: http://docs.typo3.org/typo3cms/extensions/lp_fussballde/3.0.0/ und Git: https://github.com/lars85/TYPO3-Extensions-lp_fussballde',
 	'category' => 'plugin',
 	'author' => 'Lars Peipmann',
 	'author_email' => 'Lars@Peipmann.de',
@@ -27,15 +27,18 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '2.0.2',
-	'constraints' => array(
-		'depends' => array(
-			'extbase' => 'undefined',
-			'typo3' => '6.0.0-0.0.0',
+	'version' => '3.0.1',
+	'constraints' => 
+	array (
+		'depends' => 
+		array (
+			'typo3' => '6.0.0-6.1.99',
 		),
-		'conflicts' => array(
+		'conflicts' => 
+		array (
 		),
-		'suggests' => array(
+		'suggests' => 
+		array (
 		),
 	),
 );

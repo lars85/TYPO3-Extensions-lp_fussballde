@@ -1,19 +1,14 @@
-plugin.tx_larspfussballdejs {
-	view {
-		# cat=plugin.tx_larspfussballdejs/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:larsp_fussballde_js/Resources/Private/Templates/
-		# cat=plugin.tx_larspfussballdejs/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:larsp_fussballde_js/Resources/Private/Partials/
-		# cat=plugin.tx_larspfussballdejs/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:larsp_fussballde_js/Resources/Private/Layouts/
-	}
-
-	properties {
-		key =
-		competitionId =
-		season = current
-		season.swapDay =  1
-		season.swapMonth = 8
-		display = games
+plugin.tx_lpfussballde {
+	settings {
+		attributes {
+			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.schluessel
+			schluessel =
+			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.wettbewerbId
+			wettbewerbId =
+			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.mandantId
+			mandantId =
+			# cat=plugin.tx_lpfussballde//a; type=options[1,2]; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.display
+			display = 1
+		}
 	}
 }

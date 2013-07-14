@@ -1,6 +1,6 @@
 <?php
 
-namespace LarsPeipmann\LarspFussballdeJs\Controller;
+namespace LarsPeipmann\LpFussballde\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -29,231 +29,30 @@ namespace LarsPeipmann\LarspFussballdeJs\Controller;
 /**
  * The main controller for the page backend module.
  *
- * @package LarspFussballJs
+ * @package LpFussballde
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
 class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-	protected $requiredProperties = array('key', 'competitionId', 'season', 'display');
-
 	/**
-	 * @var \TYPO3\CMS\Extbase\Service\FlexFormService
-	 */
-	protected $flexFormService;
-
-	/**
-	 * @param \TYPO3\CMS\Extbase\Service\FlexFormService $flexFormService
-	 * @return void
-	 */
-	public function injectFlexFormService(\TYPO3\CMS\Extbase\Service\FlexFormService $flexFormService) {
-		$this->flexFormService = $flexFormService;
-	}
-
-	/**
+	 * Show Action
+	 *
 	 * @return string
 	 */
 	public function showAction() {
-		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+		if (empty($this->settings)) {
+			return 'Please inlcude TypoScript static files (setup.txt and constants.txt) of lp_fussballde extension.';
+		}
+
 		$contentObject = $this->configurationManager->getContentObject();
-		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-		$typoScriptObject = &$GLOBALS['TSFE'];
 
-		if (empty($typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'])) {
-			$this->flashMessageContainer->add(
-				'Missing configuration: plugin.tx_larspfussballdejs',
-				'Fussball.de JavaScript',
-				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
-			);
-			return $this->view->render();
-		}
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_larspfussballdejs.'];
-
-		$properties = $this->getProperties($extensionTypoScript, $contentObject);
-		$missingProperties = $this->getMissingProperties($properties);
-		if (count($missingProperties)) {
-			$this->flashMessageContainer->add(
-				'Missing properties: <b>' . join(', ', $missingProperties) . '</b><br />Current Properties: ' . var_export($properties, TRUE),
-				'Fussball.de JavaScript',
-				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
-			);
-			return $this->view->render();
-		}
-
-		array_push($typoScriptObject->registerStack, $typoScriptObject->register);
-		$this->addArrayToRegister($typoScriptObject, $properties);
-
-		$this->view
-			->assign('properties', $properties)
-			->assign('missingProperties', $missingProperties)
-			->assign('jsFiles',  $this->getJavaScriptFiles($extensionTypoScript, $contentObject));
-
-		$content = $this->view->render();
-
-		$typoScriptObject->register = array_pop($typoScriptObject->registerStack);
-
-		return $content;
-	}
-
-	/**
-	 * Returns required properties which are not in the parameter $properties.
-	 *
-	 * @param array $properties
-	 * @return array
-	 */
-	protected function getMissingProperties($properties) {
-		$missing = array();
-		foreach ($this->requiredProperties as $key) {
-			if (!isset($properties[$key]) || strlen($properties[$key]) == 0) {
-				$missing[] = $key;
-			}
-		}
-		return $missing;
-	}
-
-	/**
-	 * @param array $extensionTypoScript
-	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
-	 * @return array
-	 */
-	protected function getProperties($extensionTypoScript, $contentObject) {
-		$typoScriptProperties = $this->getTypoScriptProperties($contentObject, $extensionTypoScript);
-		$flexFormProperties = $this->flexFormService->convertFlexFormContentToArray($contentObject->data['pi_flexform']);
-		$flexFormProperties = $this->patchFlexFormProperties($flexFormProperties, array_keys($typoScriptProperties));
-
-		if ($flexFormProperties['display'] === 'default') {
-			unset($flexFormProperties['display']);
-		}
-		$properties = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($typoScriptProperties, $flexFormProperties, FALSE, FALSE);
-		$properties['extKey'] = 'larsp_fussballde_js';
-		$properties['contentId'] = $contentObject->data['uid'];
-
-		if (isset($properties['season']) && $properties['season'] == 'current') {
-			$seasonTs = $extensionTypoScript['properties.']['season.'];
-			$year = date('y');
-			if (time() < mktime(0, 0, 0, intval($seasonTs['swapMonth']), intval($seasonTs['swapDay']))) {
-				$properties['season'] = str_pad(intval($year) - 1, 2, '0', STR_PAD_LEFT) . str_pad($year, 2, '0', STR_PAD_LEFT);
-			} else {
-				$properties['season'] = str_pad($year, 2, '0', STR_PAD_LEFT) . str_pad(intval($year) + 1, 2, '0', STR_PAD_LEFT);
-			}
-		}
-
-		foreach ($properties as $key => $value) {
-			$properties[$key] = htmlspecialchars($value);
-		}
-
-		return $properties;
-	}
-
-	/**
-	 * @param array $extensionTypoScript
-	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
-	 * @return array
-	 */
-	protected function getJavaScriptFiles($extensionTypoScript, $contentObject) {
-		$configuration = $extensionTypoScript['includeJs.'];
-		$files = array();
-		foreach ($configuration as $key => $value) {
-			$keyWithoutDot = str_replace('.', '', $key);
-			if (isset($files[$keyWithoutDot])) {
-				continue;
-			}
-			$file = $this->stdWrap($configuration, $keyWithoutDot, $contentObject);
-			if ($file !== NULL) {
-				$files[$keyWithoutDot] = $file;
-			}
-		}
-		return $files;
-	}
-
-	/**
-	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
-	 * @param array $extensionTypoScript
-	 * @return array
-	 */
-	protected function getTypoScriptProperties($contentObject, $extensionTypoScript) {
-		$properties = array();
-
-		$typoScriptKeysLowerCase = array();
-		foreach (array_keys($extensionTypoScript) as $key) {
-			$typoScriptKeysLowerCase[strtolower($key)] = $key;
-		}
-
-		foreach ($extensionTypoScript['properties.'] as $key => $value) {
-			$keyWithoutDot = str_replace('.', '', $key);
-			if (isset($properties[$keyWithoutDot])) {
-				continue;
-			}
-
-			$propertyValue = $this->stdWrap($extensionTypoScript['properties.'], $keyWithoutDot, $contentObject);
-
-			if (strlen($propertyValue) == 0 && isset($typoScriptKeysLowerCase[strtolower($keyWithoutDot)])) {
-				$propertyValue = $extensionTypoScript[ $typoScriptKeysLowerCase[strtolower($keyWithoutDot)] ];
-			}
-
-			if ($propertyValue !== NULL) {
-				$properties[$keyWithoutDot] = $propertyValue;
-			}
-		}
-
-		return $properties;
-	}
-
-	/**
-	 * @param array $flexFormProperties
-	 * @param array $correctPropertyKeys
-	 * @return array
-	 */
-	protected function patchFlexFormProperties($flexFormProperties, $correctPropertyKeys) {
-		$newProperties = array();
-
-		$correctPropertyKeysLowerCase = array();
-		foreach ($correctPropertyKeys as $key) {
-			$correctPropertyKeysLowerCase[strtolower($key)] = $key;
-		}
-
-		foreach ($flexFormProperties as $key => $value) {
-			if (is_array($value)) {
-				continue;
-			}
-			if (isset($correctPropertyKeysLowerCase[strtolower($key)])) {
-				$newProperties[ $correctPropertyKeysLowerCase[strtolower($key)] ] = $value;
-			} else {
-				$newProperties[ $key ] = $value;
-			}
-		}
-
-		return $newProperties;
-	}
-
-	/**
-	 * Processes a stdWrap.
-	 *
-	 * @param array $configuration
-	 * @param string $key
-	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObject
-	 * @return string
-	 */
-	protected function stdWrap($configuration, $key, $contentObject) {
-		$value = NULL;
-		if (isset($configuration[$key]) && isset($configuration[$key . '.'])) {
-			$value = $contentObject->stdWrap($configuration[$key], $configuration[$key . '.']);
-		} elseif (isset($configuration[$key])) {
-			$value = $configuration[$key];
-		} elseif (isset($configuration[$key . '.'])) {
-			$value = $contentObject->stdWrap('', $configuration[$key . '.']);
-		}
-		return $value;
-	}
-
-	/**
-	 * @param \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $typoScriptObject
-	 * @param array $array
-	 * @return MainController
-	 */
-	protected function addArrayToRegister($typoScriptObject, $array) {
-		foreach ($array as $key => $value) {
-			$typoScriptObject->register[$key] = $value;
-		}
-		return $this;
+		$this->view->assignMultiple(
+			array(
+				'extensionKey'				=> $this->request->getControllerExtensionKey(),
+				'extensionKeyWithoutUnderl'	=> str_replace('_', '', $this->request->getControllerExtensionKey()),
+				'pluginName'				=> $this->request->getPluginName(),
+				'contentUid'				=> $contentObject->data['uid'],
+			)
+		);
 	}
 }

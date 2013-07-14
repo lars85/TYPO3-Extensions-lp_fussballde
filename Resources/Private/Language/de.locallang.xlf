@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-02-12T14:25:01Z" product-name="larsp_fussballde_js">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-07-13T09:20:00Z" product-name="lp_fussballde">
 		<header/>
 		<body>
-			<trans-unit id="loading" xml:space="preserve" approved="yes">
+			<trans-unit id="loading">
 				<source>Loading data...</source>
 				<target>Lade Daten...</target>
 			</trans-unit>
-			<trans-unit id="source" xml:space="preserve" approved="yes">
+			<trans-unit id="source">
 				<source>Source: Fussball.de</source>
 				<target>Quelle: Fussball.de</target>
 			</trans-unit>
