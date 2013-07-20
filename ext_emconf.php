@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Fussball.de',
-	'description' => 'Bindet Begegnungen und Spielpläne von Fussball.de über JavaScript ein. Anmeldung auf Fussball.de ist nötig! Doku: http://docs.typo3.org/typo3cms/extensions/lp_fussballde/3.0.0/ und Git: https://github.com/lars85/TYPO3-Extensions-lp_fussballde',
+	'description' => 'Bindet Begegnungen und Spielpläne von Fussball.de über JavaScript ein. Anmeldung auf Fussball.de ist nötig! Doku: http://docs.typo3.org/typo3cms/extensions/lp_fussballde/ und Git: https://github.com/lars85/TYPO3-Extensions-lp_fussballde/',
 	'category' => 'plugin',
 	'author' => 'Lars Peipmann',
 	'author_email' => 'Lars@Peipmann.de',
