@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "lp_fussballde".
  *
- * Auto generated 14-07-2013 19:10
+ * Auto generated 21-07-2013 22:01
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '3.0.1',
+	'version' => '3.0.2',
 	'constraints' => 
 	array (
 		'depends' => 
