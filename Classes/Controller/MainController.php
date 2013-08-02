@@ -34,6 +34,19 @@ namespace LarsPeipmann\LpFussballde\Controller;
  */
 
 class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+
+	/**
+	 * Initializes the controller before invoking an action method.
+	 *
+	 * @return void
+	 */
+	protected function initializeAction() {
+		// Replace old pattern with new one (new pattern comes with Extbase 6.2)
+		if (!preg_match('/\\\/', $this->viewObjectNamePattern)) {
+			$this->viewObjectNamePattern = 'LarsPeipmann\@extension\View\@controller\@action@format';
+		}
+	}
+
 	/**
 	 * Show Action
 	 *

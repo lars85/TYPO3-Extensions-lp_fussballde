@@ -1,5 +1,7 @@
 <?php
 
+Namespace LarsPeipmann\LpFussballde\View\Main;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -31,9 +33,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-//Namespace LarsPeipmann\LpFussballde\View\Main;
-//class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-class Tx_LpFussballde_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 	/**
 	 * Renders the view
 	 *
@@ -52,7 +52,7 @@ class Tx_LpFussballde_View_Main_Show extends \TYPO3\CMS\Extbase\Mvc\View\Abstrac
 		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballde.'];
 
 		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
-		$jsFiles = TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
+		$jsFiles = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
 		foreach ($jsFiles as $jsFile) {
 			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
