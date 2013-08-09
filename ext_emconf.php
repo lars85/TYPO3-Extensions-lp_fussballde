@@ -25,7 +25,7 @@ $EM_CONF[$_EXTKEY] = array (
   'modify_tables' => '',
   'clearCacheOnLoad' => 0,
   'lockType' => '',
-  'version' => '3.0.4',
+  'version' => '3.0.5',
   'constraints' => 
   array (
     'depends' => 
@@ -40,7 +40,7 @@ $EM_CONF[$_EXTKEY] = array (
     ),
   ),
   'user' => 'lars85',
-  'comment' => 'TYPO3 V6.0 dependancy should work now with Ext upload from t3elmar. Did not work with extension_uploader',
+  'comment' => 'Removed typo in ShowAction - thanks to freimuth82!',
 );
 
 ?>
