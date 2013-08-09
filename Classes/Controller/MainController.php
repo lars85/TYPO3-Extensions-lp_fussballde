@@ -54,7 +54,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function showAction() {
 		if (empty($this->settings)) {
-			return 'Please inlcude TypoScript static files (setup.txt and constants.txt) of lp_fussballde extension.';
+			return 'Please include TypoScript static files (setup.txt and constants.txt) of lp_fussballde extension.';
 		}
 
 		$contentObject = $this->configurationManager->getContentObject();
@@ -62,7 +62,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assignMultiple(
 			array(
 				'extensionKey'				=> $this->request->getControllerExtensionKey(),
-				'extensionKeyWithoutUnderl'	=> str_replace('_', '', $this->request->getControllerExtensionKey()),
+				'extensionKeyWithoutUnderl'		=> str_replace('_', '', $this->request->getControllerExtensionKey()),
 				'pluginName'				=> $this->request->getPluginName(),
 				'contentUid'				=> $contentObject->data['uid'],
 			)
