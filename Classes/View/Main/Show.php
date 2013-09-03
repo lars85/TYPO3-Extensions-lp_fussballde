@@ -57,18 +57,35 @@ class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
 
-		$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
+		if (!empty($extensionTypoScript['renderObj'])) {
+			$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
+		} else {
+			$content = 'Please inlcude TypoScript static files (setup.txt and constants.txt) of lp_fussballde_f4x extension.';
+		}
 
 		return $content;
 	}
 
+	/**
+	 * Merge nested array into one array.
+	 *
+	 * @param array $variables
+	 * @param array $fields
+	 * @return void
+	 */
 	protected function mergeIntoOneArray($variables, &$fields) {
 		foreach ($variables as $key => $value) {
 			if (is_array($value)) {
 				$this->mergeIntoOneArray($value, $fields);
 			} else {
-				$fields[$key] = htmlspecialchars($value, ENT_HTML5);
+				if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+					$fields[$key] = htmlspecialchars($value, ENT_HTML5);
+				} else {
+					$fields[$key] = htmlspecialchars($value);
+				}
 			}
 		}
 	}
 }
+
+?>

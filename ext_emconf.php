@@ -15,6 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
   'author' => 'Lars Peipmann',
   'author_email' => 'Lars@Peipmann.de',
   'author_company' => '',
+  'dependencies' => '',
   'shy' => '',
   'priority' => '',
   'module' => '',
@@ -25,7 +26,7 @@ $EM_CONF[$_EXTKEY] = array (
   'modify_tables' => '',
   'clearCacheOnLoad' => 0,
   'lockType' => '',
-  'version' => '3.0.5',
+  'version' => '3.0.6',
   'constraints' => 
   array (
     'depends' => 

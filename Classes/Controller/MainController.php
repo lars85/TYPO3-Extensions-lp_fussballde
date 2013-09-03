@@ -53,19 +53,17 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return string
 	 */
 	public function showAction() {
-		if (empty($this->settings)) {
-			return 'Please include TypoScript static files (setup.txt and constants.txt) of lp_fussballde extension.';
-		}
-
 		$contentObject = $this->configurationManager->getContentObject();
 
 		$this->view->assignMultiple(
 			array(
 				'extensionKey'				=> $this->request->getControllerExtensionKey(),
-				'extensionKeyWithoutUnderl'		=> str_replace('_', '', $this->request->getControllerExtensionKey()),
+				'extensionKeyWithoutUnderl'	=> str_replace('_', '', $this->request->getControllerExtensionKey()),
 				'pluginName'				=> $this->request->getPluginName(),
 				'contentUid'				=> $contentObject->data['uid'],
 			)
 		);
 	}
 }
+
+?>
