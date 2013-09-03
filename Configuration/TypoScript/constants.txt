@@ -1,13 +1,13 @@
-plugin.tx_lpfussballde {
+plugin.tx_lpfussballdef4x {
 	settings {
 		attributes {
-			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.schluessel
+			# cat=plugin.tx_lpfussballdef4x//a; type=string; label=LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_constants.xlf:pi1.schluessel
 			schluessel =
-			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.wettbewerbId
+			# cat=plugin.tx_lpfussballdef4x//a; type=string; label=LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_constants.xlf:pi1.wettbewerbId
 			wettbewerbId =
-			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.mandantId
+			# cat=plugin.tx_lpfussballdef4x//a; type=string; label=LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_constants.xlf:pi1.mandantId
 			mandantId =
-			# cat=plugin.tx_lpfussballde//a; type=options[1,2]; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.display
+			# cat=plugin.tx_lpfussballdef4x//a; type=options[1,2]; label=LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_constants.xlf:pi1.display
 			display = 1
 		}
 	}

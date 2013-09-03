@@ -6,15 +6,15 @@
 .. include:: Includes.txt
 
 
-=========================================================
-lp_fussballde: Begegnungen und Spielpläne von Fussball.de
-=========================================================
+==============================================================================
+lp_fussballde_f4x: Begegnungen und Spielpläne von Fussball.de (für TYPO3 v4.x)
+==============================================================================
 
 :Rendered:
       |today|
 
 :Description:
-      Bindet Begegnungen und Spielpläne von Fussball.de über JavaScript ein. Anmeldung auf Fussball.de ist nötig!
+      Bindet Begegnungen und Spielpläne von Fussball.de über JavaScript in TYPO3 Version 4.x ein. Anmeldung auf Fussball.de ist nötig!
 
 :Keywords:
       forEditors, forAdmins, forBeginners, forIntermediates

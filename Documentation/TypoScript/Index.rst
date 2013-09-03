@@ -33,7 +33,7 @@ Falls die Seite ueber verschieden Domains erreichbar ist, kann der Schlüssel ü
 ::
 
 	[globalString = ENV:HTTP_HOST=domain.de]
-	plugin.tx_lpfussballde.settings.attributes.schluessel = ABC...
+	plugin.tx_lpfussballdef4x.settings.attributes.schluessel = ABC...
 	[global]
 
 ..
@@ -46,7 +46,7 @@ Als weitere Möglichkeit können auch weitere Domain im SETUP über die folgende
 
 ::
 
-	plugin.tx_lpfussballde.includeJs.10.lpFussballde_schluessel.cObject {
+	plugin.tx_lpfussballdef4x.includeJs.10.lpFussballdeF4x_schluessel.cObject {
 		domain_de = TEXT
 		domain_de.value = ABC..
 
@@ -63,6 +63,6 @@ Standard-CSS im SETUP deaktivieren
 
 ::
 
-	plugin.tx_lpfussballde._CSS_DEFAULT_STYLE >
+	plugin.tx_lpfussballdef4x._CSS_DEFAULT_STYLE >
 
 ..

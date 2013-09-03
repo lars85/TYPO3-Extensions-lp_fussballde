@@ -9,7 +9,7 @@
 
 			<settings.attributes.schluessel>
 				<TCEforms>
-					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.schluessel</label>
+					<label>LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.schluessel</label>
 					<config>
 						<type>input</type>
 						<size>28</size>
@@ -19,7 +19,7 @@
 
 			<settings.attributes.wettbewerbId>
 				<TCEforms>
-					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.wettbewerbId</label>
+					<label>LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.wettbewerbId</label>
 					<config>
 						<type>input</type>
 						<size>28</size>
@@ -29,7 +29,7 @@
 
 			<settings.attributes.mandantId>
 				<TCEforms>
-					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.mandantId</label>
+					<label>LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.mandantId</label>
 					<config>
 						<type>input</type>
 						<size>8</size>
@@ -39,20 +39,20 @@
 
 			<settings.attributes.display>
 				<TCEforms>
-					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display</label>
+					<label>LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.display</label>
 					<config>
 						<type>select</type>
 						<items type="array">
 							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.0</numIndex>
+								<numIndex index="0">LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.display.i.0</numIndex>
 								<numIndex index="1">0</numIndex>
 							</numIndex>
 							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.1</numIndex>
+								<numIndex index="0">LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.display.i.1</numIndex>
 								<numIndex index="1">1</numIndex>
 							</numIndex>
 							<numIndex index="2" type="array">
-								<numIndex index="0">LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display.i.2</numIndex>
+								<numIndex index="0">LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang_flexform.xml:pi1.display.i.2</numIndex>
 								<numIndex index="1">2</numIndex>
 							</numIndex>
 						</items>

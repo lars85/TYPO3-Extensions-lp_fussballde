@@ -1,7 +1,5 @@
 <?php
 
-namespace LarsPeipmann\LpFussballde\Controller;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -29,23 +27,11 @@ namespace LarsPeipmann\LpFussballde\Controller;
 /**
  * The main controller for the page backend module.
  *
- * @package LpFussballde
+ * @package LpFussballdeF4x
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * Initializes the controller before invoking an action method.
-	 *
-	 * @return void
-	 */
-	protected function initializeAction() {
-		// Replace old pattern with new one (new pattern comes with Extbase 6.2)
-		if (!preg_match('/\\\/', $this->viewObjectNamePattern)) {
-			$this->viewObjectNamePattern = 'LarsPeipmann\@extension\View\@controller\@action@format';
-		}
-	}
+class Tx_LpFussballdeF4x_Controller_MainController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
 	 * Show Action

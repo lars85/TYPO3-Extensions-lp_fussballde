@@ -1,12 +1,12 @@
-plugin.tx_lpfussballde {
+plugin.tx_lpfussballdef4x {
 	# Includes a list of Javascript files (separated by new lines)
 	includeJs = COA
 	includeJs {
 		10 = LOAD_REGISTER
 		10 {
 			# Schlüssel
-			lpFussballde_schluessel.cObject = CASE
-			lpFussballde_schluessel.cObject {
+			lpFussballdeF4x_schluessel.cObject = CASE
+			lpFussballdeF4x_schluessel.cObject {
 				key.data = getenv:HTTP_HOST
 				# Replace all points with underscore characters in domain
 				key.stdWrap.replacement.10 {
@@ -18,14 +18,14 @@ plugin.tx_lpfussballde {
 				domain_de.value = ABCD..
 				*/
 				default = TEXT
-				default.value = {$plugin.tx_lpfussballde.settings.attributes.schluessel}
+				default.value = {$plugin.tx_lpfussballdef4x.settings.attributes.schluessel}
 			}
-			lpFussballde_schluessel.override.field = schluessel
+			lpFussballdeF4x_schluessel.override.field = schluessel
 		}
 
 		20 = TEXT
 		20 {
-			data = register:lpFussballde_schluessel
+			data = register:lpFussballdeF4x_schluessel
 			wrap = http://ergebnisdienst.fussball.de/static/egm//js/egmWidget.js?schluessel=|
 			append = TEXT
 			append.char = 10
@@ -38,26 +38,26 @@ plugin.tx_lpfussballde {
 	renderObj {
 		10 = LOAD_REGISTER
 		10 {
-			lpFussballde_id = {field:extensionKeyWithoutUnderl}_c{field:contentUid}
-			lpFussballde_id.insertData = 1
+			lpFussballdeF4x_id = {field:extensionKeyWithoutUnderl}_c{field:contentUid}
+			lpFussballdeF4x_id.insertData = 1
 
 			# Wettbewerb
-			lpFussballde_wettbewerbId = {$plugin.tx_lpfussballde.settings.attributes.wettbewerbId}
-			lpFussballde_wettbewerbId.override.field = wettbewerbId
+			lpFussballdeF4x_wettbewerbId = {$plugin.tx_lpfussballdef4x.settings.attributes.wettbewerbId}
+			lpFussballdeF4x_wettbewerbId.override.field = wettbewerbId
 
 			# Mandant
-			lpFussballde_mandantId = {$plugin.tx_lpfussballde.settings.attributes.mandantId}
-			lpFussballde_mandantId.override.field = mandantId
+			lpFussballdeF4x_mandantId = {$plugin.tx_lpfussballdef4x.settings.attributes.mandantId}
+			lpFussballdeF4x_mandantId.override.field = mandantId
 
 			# Display
-			lpFussballde_display = {$plugin.tx_lpfussballde.settings.attributes.display}
-			lpFussballde_display.override.field = display
+			lpFussballdeF4x_display = {$plugin.tx_lpfussballdef4x.settings.attributes.display}
+			lpFussballdeF4x_display.override.field = display
 		}
 
 		# Renders the content of the plugin
 		20 = COA
 		20 {
-			stdWrap.dataWrap = <div class="tx-{field:extensionKeyWithoutUnderl}-pi1 tx-{field:extensionKeyWithoutUnderl}-display{register:lpFussballde_display}">|</div>
+			stdWrap.dataWrap = <div class="tx-{field:extensionKeyWithoutUnderl}-pi1 tx-{field:extensionKeyWithoutUnderl}-display{register:lpFussballdeF4x_display}">|</div>
 
 			# Error messages
 			20 = COA
@@ -70,32 +70,32 @@ plugin.tx_lpfussballde {
 					wrap = <li class="error">|</li>
 					noTrimWrap = |Missing Attribute: ||
 					value = wettbewerbId
-					if.isFalse.data = register:lpFussballde_wettbewerbId
+					if.isFalse.data = register:lpFussballdeF4x_wettbewerbId
 				}
 				20 < .10
 				20 {
 					value = mandantId
-					if.isFalse.data = register:lpFussballde_mandantId
+					if.isFalse.data = register:lpFussballdeF4x_mandantId
 				}
 				30 < .10
 				30 {
 					value = display
-					if.isFalse.data = register:lpFussballde_display
+					if.isFalse.data = register:lpFussballdeF4x_display
 				}
 			}
 
 			# Main div container with loading text
 			30 = TEXT
 			30 {
-				dataWrap = <div id="{register:lpFussballde_id}">|</div>
-				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:loading
+				dataWrap = <div id="{register:lpFussballdeF4x_id}">|</div>
+				data = LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang.xlf:loading
 			}
 
 			# Source
 			40 = TEXT
 			40 {
 				wrap = <div class="source">|</div>
-				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:source
+				data = LLL:EXT:lp_fussballde_f4x/Resources/Private/Language/locallang.xlf:source
 			}
 
 			# Javascript
@@ -104,21 +104,21 @@ plugin.tx_lpfussballde {
 				wrap = <script type="text/javascript">|</script>
 
 				10 = TEXT
-				10.value = var {register:lpFussballde_id} = new fussballdeAPI();
+				10.value = var {register:lpFussballdeF4x_id} = new fussballdeAPI();
 				10.insertData = 1
 				//10.append = TEXT
 				//10.append.char = 10
 
 				20 < .10
-				20.value = {register:lpFussballde_id}.setzeWettbewerb('{register:lpFussballde_wettbewerbId}');
+				20.value = {register:lpFussballdeF4x_id}.setzeWettbewerb('{register:lpFussballdeF4x_wettbewerbId}');
 
 				30 < .10
-				30.value = {register:lpFussballde_id}.setzeMandant('{register:lpFussballde_mandantId}');
+				30.value = {register:lpFussballdeF4x_id}.setzeMandant('{register:lpFussballdeF4x_mandantId}');
 
 				40 = CASE
 				40 {
-					stdWrap.dataWrap = {register:lpFussballde_id}.zeige|('{register:lpFussballde_id}');
-					key.data = register:lpFussballde_display
+					stdWrap.dataWrap = {register:lpFussballdeF4x_id}.zeige|('{register:lpFussballdeF4x_id}');
+					key.data = register:lpFussballdeF4x_display
 
 					1 = TEXT
 					1.value = Begegnungen
@@ -141,30 +141,30 @@ plugin.tx_lpfussballde {
 
 }
 
-plugin.tx_lpfussballde._CSS_DEFAULT_STYLE (
+plugin.tx_lpfussballdef4x._CSS_DEFAULT_STYLE (
 	/* Hide elements */
-	.tx-lpfussballde-pi1 #fussballdeAPI,
-	.tx-lpfussballde-pi1 .egmTab,
-	.tx-lpfussballde-pi1 .egmIconMatchReport,
-	.tx-lpfussballde-pi1 .egmMatchMediaLink,
-	.tx-lpfussballde-display2 .egmSnippetControl,
-	.tx-lpfussballde-pi1 iframe {
+	.tx-lpfussballdef4x-pi1 #fussballdeAPI,
+	.tx-lpfussballdef4x-pi1 .egmTab,
+	.tx-lpfussballdef4x-pi1 .egmIconMatchReport,
+	.tx-lpfussballdef4x-pi1 .egmMatchMediaLink,
+	.tx-lpfussballdef4x-display2 .egmSnippetControl,
+	.tx-lpfussballdef4x-pi1 iframe {
 		display: none !important;
 		height: 0 !important;
 	}
 
 	/* 100% width for the table */
-	.tx-lpfussballde-pi1 div.egmMain {
+	.tx-lpfussballdef4x-pi1 div.egmMain {
 		width: 100% !important;
 	}
 
 	/* Background for controls container */
-	.tx-lpfussballde-pi1 .egmSnippetControl {
+	.tx-lpfussballdef4x-pi1 .egmSnippetControl {
 		background: #CCCCCC;
 	}
 
 	/* Source */
-	.tx-lpfussballde-pi1 > .source {
+	.tx-lpfussballdef4x-pi1 > .source {
 		color: #CCCCCC;
 		text-align: right;
 	}

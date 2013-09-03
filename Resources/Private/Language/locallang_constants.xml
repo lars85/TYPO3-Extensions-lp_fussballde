@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>lp_fussballde_f4x: Constants</description>
+		<type>constants</type>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pi1.schluessel">Key for Domain: (German: Schlüssel, Example: "01HMPL241G000000VS5DVMP9...")</label>
+			<label index="pi1.wettbewerbId">CompetitionID: (German: WettbewerbID, Example: "01H9UO9UBK000000VV0AG812VVFL8F56-D")</label>
+			<label index="pi1.mandantId">ClientID: (German: MandantID, Example: "35")</label>
+			<label index="pi1.display">Display: "1" for games, "2" for table</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="pi1.schluessel">Schlüssel für Domain: (Beispiel: "01HMPL241G000000VS5DVMP9...")</label>
+			<label index="pi1.wettbewerbId">WettbewerbID: (Beispiel: "01H9UO9UBK000000VV0AG812VVFL8F56-D")</label>
+			<label index="pi1.mandantId">MandantID: (Beispiel: "35")</label>
+			<label index="pi1.display">Display: "1" für Spieltag, "2" für Tabelle</label>
+		</languageKey>
+	</data>
+</T3locallang>

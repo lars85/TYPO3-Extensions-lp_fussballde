@@ -5,7 +5,7 @@
 ---
 conf.py:
   copyright: 1992-2013
-  project: TYPO3 Extension "lp_fussballde"
+  project: TYPO3 Extension "lp_fussballde_f4x"
   version: 3.0.3
   release: 3.0.3
 ...

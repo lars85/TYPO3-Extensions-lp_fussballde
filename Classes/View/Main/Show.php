@@ -1,7 +1,5 @@
 <?php
 
-Namespace LarsPeipmann\LpFussballde\View\Main;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -29,11 +27,11 @@ Namespace LarsPeipmann\LpFussballde\View\Main;
 /**
  * The main controller for the page backend module.
  *
- * @package LpFussballde
+ * @package LpFussballdeF4x
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+class Tx_LpFussballdeF4x_View_Main_Show extends Tx_Extbase_MVC_View_AbstractView {
 	/**
 	 * Renders the view
 	 *
@@ -43,16 +41,16 @@ class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		$fields = array();
 		$this->mergeIntoOneArray($this->variables, $fields);
 
-		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+		/* @var $contentObject tslib_cObj */
 		$contentObject = &$GLOBALS['TSFE']->cObj;
 		$contentObject->start($fields);
 
-		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+		/* @var $typoScriptObject tslib_fe */
 		$typoScriptObject = &$GLOBALS['TSFE'];
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballde.'];
+		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballdef4x.'];
 
 		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
-		$jsFiles = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
+		$jsFiles = t3lib_div::trimExplode("\n", $jsFileString, TRUE);
 		foreach ($jsFiles as $jsFile) {
 			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}

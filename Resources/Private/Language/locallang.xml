@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>lp_fussballde_f4x: Plugin</description>
+		<type>plugin</type>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="loading">Loading data...</label>
+			<label index="source">Source: Fussball.de</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="loading">Lade Daten...</label>
+			<label index="source">Quelle: Fussball.de</label>
+		</languageKey>
+	</data>
+</T3locallang>
