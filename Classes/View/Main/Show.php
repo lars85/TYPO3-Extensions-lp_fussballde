@@ -26,6 +26,9 @@ Namespace LarsPeipmann\LpFussballde\View\Main;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Extbase\Mvc\View\AbstractView;
+
 /**
  * The main controller for the page backend module.
  *
@@ -33,7 +36,7 @@ Namespace LarsPeipmann\LpFussballde\View\Main;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+class Show extends AbstractView {
 	/**
 	 * Renders the view
 	 *
@@ -52,7 +55,7 @@ class Show extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballde.'];
 
 		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
-		$jsFiles = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
+		$jsFiles = GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
 		foreach ($jsFiles as $jsFile) {
 			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
 		}
