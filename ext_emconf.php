@@ -10,7 +10,7 @@
 
 $EM_CONF[$_EXTKEY] = array (
   'title' => 'Fussball.de',
-  'description' => 'Bindet Begegnungen und Spielplaene von Fussball.de über JavaScript ein. Anmeldung auf Fussball.de ist noetig!',
+  'description' => 'Bindet Begegnungen und Spielplaene von Fussball.de ueber JavaScript ein. Anmeldung auf Fussball.de ist noetig!',
   'category' => 'plugin',
   'author' => 'Lars Peipmann',
   'author_email' => 'Lars@Peipmann.de',
