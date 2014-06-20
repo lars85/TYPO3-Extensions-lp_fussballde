@@ -1,6 +1,6 @@
 <?php
 
-namespace LarsPeipmann\LpFussballde\Controller;
+namespace LarsPeipmann\LpFussballde\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -27,42 +27,28 @@ namespace LarsPeipmann\LpFussballde\Controller;
  ***************************************************************/
 
 /**
- * The main controller for the page backend module.
+ * Configuration Manager
  *
  * @package LpFussballde
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ConfigurationManager implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
-	 * Initializes the controller before invoking an action method.
-	 *
-	 * @return void
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+	 * @inject
 	 */
-	protected function initializeAction() {
-		// Replace old pattern with new one (new pattern comes with Extbase 6.2)
-		if (!preg_match('/\\\/', $this->viewObjectNamePattern)) {
-			$this->viewObjectNamePattern = 'LarsPeipmann\@extension\View\@controller\@action@format';
-		}
-	}
+	protected $configurationManager;
 
 	/**
-	 * Show Action
-	 *
-	 * @return string
+	 * @return array
+	 * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
 	 */
-	public function showAction() {
-		$contentObject = $this->configurationManager->getContentObject();
-
-		$this->view->assignMultiple(
-			array(
-				'contentObject'				=> $contentObject,
-				'extensionKey'				=> $this->request->getControllerExtensionKey(),
-				'extensionKeyWithoutUnderl'	=> str_replace('_', '', $this->request->getControllerExtensionKey()),
-				'pluginName'				=> $this->request->getPluginName(),
-				'contentUid'				=> $contentObject->data['uid'],
-			)
+	public function getExtensionConfiguration() {
+		$setup = $this->configurationManager->getConfiguration(
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManager::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
+		return !empty($setup['plugin.']['tx_lpfussballde.']) ? $setup['plugin.']['tx_lpfussballde.'] : array();
 	}
 }

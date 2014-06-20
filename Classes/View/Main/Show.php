@@ -5,7 +5,7 @@ Namespace LarsPeipmann\LpFussballde\View\Main;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Lars Peipmann <Lars@Peipmann.de>
+ *  (c) 2014 Lars Peipmann <Lars@Peipmann.de>
  *
  *  All rights reserved
  *
@@ -37,27 +37,33 @@ use \TYPO3\CMS\Extbase\Mvc\View\AbstractView;
  */
 
 class Show extends AbstractView {
+
+	/**
+	 * @var \LarsPeipmann\LpFussballde\Service\ConfigurationManager
+	 * @inject
+	 */
+	protected $configurationManager;
+
 	/**
 	 * Renders the view
 	 *
 	 * @return string
 	 */
 	public function render() {
+		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+		$contentObject = $this->variables['contentObject'];
+		unset($this->variables['contentObject']);
+
 		$fields = array();
 		$this->mergeIntoOneArray($this->variables, $fields);
-
-		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
-		$contentObject = &$GLOBALS['TSFE']->cObj;
 		$contentObject->start($fields);
 
-		/** @var $typoScriptObject \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-		$typoScriptObject = &$GLOBALS['TSFE'];
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballde.'];
+		$extensionTypoScript = $this->configurationManager->getExtensionConfiguration();
 
 		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
 		$jsFiles = GeneralUtility::trimExplode("\n", $jsFileString, TRUE);
 		foreach ($jsFiles as $jsFile) {
-			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
+			$this->getTypoScriptFrontendController()->getPageRenderer()->addJsFile($jsFile);
 		}
 
 		if (!empty($extensionTypoScript['renderObj'])) {
@@ -67,6 +73,15 @@ class Show extends AbstractView {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Returns the TypoScript Frontend Controller
+	 *
+	 * @return \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 */
+	protected function getTypoScriptFrontendController() {
+		return $GLOBALS['TSFE'];
 	}
 
 	/**
@@ -90,5 +105,3 @@ class Show extends AbstractView {
 		}
 	}
 }
-
-?>
