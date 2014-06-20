@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Lars Peipmann <Lars@Peipmann.de>
+ *  (c) 2014 Lars Peipmann <Lars@Peipmann.de>
  *
  *  All rights reserved
  *
@@ -32,27 +32,40 @@
  */
 
 class Tx_LpFussballdeF4x_View_Main_Show extends Tx_Extbase_MVC_View_AbstractView {
+
+	/**
+	 * @var Tx_LpFussballdeF4x_Service_ConfigurationManager
+	 */
+	protected $configurationManager;
+
+	/**
+	 * @param Tx_LpFussballdeF4x_Service_ConfigurationManager $configurationManager
+	 * @return void
+	 */
+	public function injectConfigurationManager(Tx_LpFussballdeF4x_Service_ConfigurationManager $configurationManager) {
+		$this->configurationManager = $configurationManager;
+	}
+
 	/**
 	 * Renders the view
 	 *
 	 * @return string
 	 */
 	public function render() {
+		/** @var $contentObject tslib_cObj */
+		$contentObject = $this->variables['contentObject'];
+		unset($this->variables['contentObject']);
+
 		$fields = array();
 		$this->mergeIntoOneArray($this->variables, $fields);
-
-		/* @var $contentObject tslib_cObj */
-		$contentObject = &$GLOBALS['TSFE']->cObj;
 		$contentObject->start($fields);
 
-		/* @var $typoScriptObject tslib_fe */
-		$typoScriptObject = &$GLOBALS['TSFE'];
-		$extensionTypoScript = $typoScriptObject->tmpl->setup['plugin.']['tx_lpfussballdef4x.'];
+		$extensionTypoScript = $this->configurationManager->getExtensionConfiguration();
 
 		$jsFileString = $contentObject->cObjGetSingle($extensionTypoScript['includeJs'], $extensionTypoScript['includeJs.']);
 		$jsFiles = t3lib_div::trimExplode("\n", $jsFileString, TRUE);
 		foreach ($jsFiles as $jsFile) {
-			$typoScriptObject->getPageRenderer()->addJsFile($jsFile);
+			$this->getTypoScriptFrontendController()->getPageRenderer()->addJsFile($jsFile);
 		}
 
 		if (!empty($extensionTypoScript['renderObj'])) {
@@ -62,6 +75,15 @@ class Tx_LpFussballdeF4x_View_Main_Show extends Tx_Extbase_MVC_View_AbstractView
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Returns the TypoScript Frontend Controller
+	 *
+	 * @return tslib_fe
+	 */
+	protected function getTypoScriptFrontendController() {
+		return $GLOBALS['TSFE'];
 	}
 
 	/**
@@ -85,5 +107,3 @@ class Tx_LpFussballdeF4x_View_Main_Show extends Tx_Extbase_MVC_View_AbstractView
 		}
 	}
 }
-
-?>

@@ -25,30 +25,35 @@
  ***************************************************************/
 
 /**
- * The main controller for the page backend module.
+ * Configuration Manager
  *
  * @package LpFussballdeF4x
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Tx_LpFussballdeF4x_Controller_MainController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_LpFussballdeF4x_Service_ConfigurationManager implements t3lib_Singleton {
 
 	/**
-	 * Show Action
-	 *
-	 * @return string
+	 * @var Tx_Extbase_Configuration_ConfigurationManager
+	 * @inject
 	 */
-	public function showAction() {
-		$contentObject = $this->configurationManager->getContentObject();
+	protected $configurationManager;
 
-		$this->view->assignMultiple(
-			array(
-				'contentObject'				=> $contentObject,
-				'extensionKey'				=> $this->request->getControllerExtensionKey(),
-				'extensionKeyWithoutUnderl'	=> str_replace('_', '', $this->request->getControllerExtensionKey()),
-				'pluginName'				=> $this->request->getPluginName(),
-				'contentUid'				=> $contentObject->data['uid'],
-			)
+	/**
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 * @return void
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+		$this->configurationManager = $configurationManager;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getExtensionConfiguration() {
+		$setup = $this->configurationManager->getConfiguration(
+			Tx_Extbase_Configuration_ConfigurationManager::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
+		return !empty($setup['plugin.']['tx_lpfussballdef4x.']) ? $setup['plugin.']['tx_lpfussballdef4x.'] : array();
 	}
 }

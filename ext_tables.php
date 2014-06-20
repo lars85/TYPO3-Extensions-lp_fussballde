@@ -32,5 +32,3 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignatureList] = 
 t3lib_extMgm::addPiFlexFormValue(
 	$pluginSignatureList, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_' . $pluginName .'.xml'
 );
-
-?>

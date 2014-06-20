@@ -26,12 +26,12 @@ $EM_CONF[$_EXTKEY] = array (
   'modify_tables' => '',
   'clearCacheOnLoad' => 0,
   'lockType' => '',
-  'version' => '3.0.7',
+  'version' => '3.0.8',
   'constraints' => 
   array (
     'depends' => 
     array (
-      'typo3' => '4.5.0-4.7.99',
+      'typo3' => '4.5.0-6.2.99',
       'extbase' => '',
     ),
     'conflicts' => 
@@ -42,7 +42,7 @@ $EM_CONF[$_EXTKEY] = array (
     ),
   ),
   'user' => 'lars85',
-  'comment' => 'First correct upload of the extension :)',
+  'comment' => 'Enables TYPO3 Version 6.2 Support',
 );
 
 ?>
