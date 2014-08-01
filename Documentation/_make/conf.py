@@ -41,7 +41,7 @@ master_doc = 'Index'
 
 # General information about the project.
 project = u'Fussball.de'
-copyright = u'2013, Lars Peipmann'
+copyright = u'2013, Lars Malach'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -186,7 +186,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'FussballdeJavaScript.tex', u'Fussball.de JavaScript Documentation',
-   u'Lars Peipmann', 'typo3manual'),
+   u'Lars Malach', 'typo3manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -216,7 +216,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'fussballdejavascript', u'Fussball.de JavaScript Documentation',
-     [u'Lars Peipmann'], 1)
+     [u'Lars Malach'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -230,7 +230,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'FussballdeJavaScript', u'Fussball.de JavaScript Documentation',
-   u'Lars Peipmann', 'FussballdeJavaScript', 'One line description of project.',
+   u'Lars Malach', 'FussballdeJavaScript', 'One line description of project.',
    'Miscellaneous'),
 ]
 

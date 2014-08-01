@@ -20,10 +20,10 @@ lp_fussballde_f4x: Begegnungen und Spielpläne von Fussball.de (für TYPO3 v4.x)
       forEditors, forAdmins, forBeginners, forIntermediates
 
 :Author:
-      Lars Peipmann
+      Lars Malach
 
 :Email:
-      Lars@Peipmann.de
+      Lars@Malach.de
 
 :Language:
       de
