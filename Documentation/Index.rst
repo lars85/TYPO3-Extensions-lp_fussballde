@@ -20,10 +20,10 @@ lp_fussballde: Begegnungen und Spielpläne von Fussball.de
       forEditors, forAdmins, forBeginners, forIntermediates
 
 :Author:
-      Lars Peipmann
+      Lars Malach
 
 :Email:
-      Lars@Peipmann.de
+      Lars@Malach.de
 
 :Language:
       de
