@@ -26,7 +26,7 @@ plugin.tx_lpfussballdef4x {
 		20 = TEXT
 		20 {
 			data = register:lpFussballdeF4x_schluessel
-			wrap = http://ergebnisdienst.fussball.de/static/egm//js/egmWidget.js?schluessel=|
+			wrap = http://www.fussball.de/export.widget.js/-/schluessel/|
 			append = TEXT
 			append.char = 10
 		}
@@ -142,30 +142,7 @@ plugin.tx_lpfussballdef4x {
 }
 
 plugin.tx_lpfussballdef4x._CSS_DEFAULT_STYLE (
-	/* Hide elements */
-	.tx-lpfussballdef4x-pi1 #fussballdeAPI,
-	.tx-lpfussballdef4x-pi1 .egmTab,
-	.tx-lpfussballdef4x-pi1 .egmIconMatchReport,
-	.tx-lpfussballdef4x-pi1 .egmMatchMediaLink,
-	.tx-lpfussballdef4x-display2 .egmSnippetControl,
 	.tx-lpfussballdef4x-pi1 iframe {
-		display: none !important;
-		height: 0 !important;
-	}
-
-	/* 100% width for the table */
-	.tx-lpfussballdef4x-pi1 div.egmMain {
-		width: 100% !important;
-	}
-
-	/* Background for controls container */
-	.tx-lpfussballdef4x-pi1 .egmSnippetControl {
-		background: #CCCCCC;
-	}
-
-	/* Source */
-	.tx-lpfussballdef4x-pi1 > .source {
-		color: #CCCCCC;
-		text-align: right;
+		width: 100%;
 	}
 )
