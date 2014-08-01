@@ -1,6 +1,6 @@
 <?php
 
-namespace LarsPeipmann\LpFussballde\Controller;
+namespace LarsMalach\LpFussballde\Controller;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -31,7 +31,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected function initializeAction() {
 		// Replace old pattern with new one (new pattern comes with Extbase 6.2)
 		if (!preg_match('/\\\/', $this->viewObjectNamePattern)) {
-			$this->viewObjectNamePattern = 'LarsPeipmann\@extension\View\@controller\@action@format';
+			$this->viewObjectNamePattern = 'LarsMalach\@extension\View\@controller\@action@format';
 		}
 	}
 

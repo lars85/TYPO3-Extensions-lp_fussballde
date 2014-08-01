@@ -1,6 +1,6 @@
 <?php
 
-Namespace LarsPeipmann\LpFussballde\View\Main;
+Namespace LarsMalach\LpFussballde\View\Main;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -27,7 +27,7 @@ use \TYPO3\CMS\Extbase\Mvc\View\AbstractView;
 class Show extends AbstractView {
 
 	/**
-	 * @var \LarsPeipmann\LpFussballde\Service\ConfigurationManager
+	 * @var \LarsMalach\LpFussballde\Service\ConfigurationManager
 	 * @inject
 	 */
 	protected $configurationManager;

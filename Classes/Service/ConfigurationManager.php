@@ -1,6 +1,6 @@
 <?php
 
-namespace LarsPeipmann\LpFussballde\Service;
+namespace LarsMalach\LpFussballde\Service;
 
 	/**
 	 * This file is part of the TYPO3 CMS project.
