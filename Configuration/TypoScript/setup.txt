@@ -91,13 +91,6 @@ plugin.tx_lpfussballde {
 				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:loading
 			}
 
-			# Source
-			40 = TEXT
-			40 {
-				wrap = <div class="source">|</div>
-				data = LLL:EXT:lp_fussballde/Resources/Private/Language/locallang.xlf:source
-			}
-
 			# Javascript
 			50 = COA
 			50 {

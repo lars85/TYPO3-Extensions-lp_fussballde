@@ -6,9 +6,6 @@
 			<trans-unit id="loading">
 				<source>Loading data...</source>
 			</trans-unit>
-			<trans-unit id="source">
-				<source>Source: Fussball.de</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>
