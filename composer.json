@@ -11,5 +11,8 @@
             "email": "Lars@Malach.de",
             "role": "Developer"
         }
-    ]
+    ],
+    "require": {
+        "typo3/cms-composer-installers": "*"
+    }
 }
