@@ -5,8 +5,6 @@ plugin.tx_lpfussballde {
 			schluessel =
 			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.wettbewerbId
 			wettbewerbId =
-			# cat=plugin.tx_lpfussballde//a; type=string; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.mandantId
-			mandantId =
 			# cat=plugin.tx_lpfussballde//a; type=options[1,2]; label=LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_constants.xlf:pi1.display
 			display = 1
 		}

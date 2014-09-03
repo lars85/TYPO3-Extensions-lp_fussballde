@@ -45,10 +45,6 @@ plugin.tx_lpfussballde {
 			lpFussballde_wettbewerbId = {$plugin.tx_lpfussballde.settings.attributes.wettbewerbId}
 			lpFussballde_wettbewerbId.override.field = wettbewerbId
 
-			# Mandant
-			lpFussballde_mandantId = {$plugin.tx_lpfussballde.settings.attributes.mandantId}
-			lpFussballde_mandantId.override.field = mandantId
-
 			# Display
 			lpFussballde_display = {$plugin.tx_lpfussballde.settings.attributes.display}
 			lpFussballde_display.override.field = display
@@ -71,11 +67,6 @@ plugin.tx_lpfussballde {
 					noTrimWrap = |Missing Attribute: ||
 					value = wettbewerbId
 					if.isFalse.data = register:lpFussballde_wettbewerbId
-				}
-				20 < .10
-				20 {
-					value = mandantId
-					if.isFalse.data = register:lpFussballde_mandantId
 				}
 				30 < .10
 				30 {
@@ -105,9 +96,6 @@ plugin.tx_lpfussballde {
 				20 < .10
 				20.value = {register:lpFussballde_id}.setzeWettbewerb('{register:lpFussballde_wettbewerbId}');
 
-				30 < .10
-				30.value = {register:lpFussballde_id}.setzeMandant('{register:lpFussballde_mandantId}');
-
 				40 = CASE
 				40 {
 					stdWrap.dataWrap = {register:lpFussballde_id}.zeige|('{register:lpFussballde_id}');
@@ -132,9 +120,9 @@ plugin.tx_lpfussballde {
 		30 = RESTORE_REGISTER
 	}
 
+	_CSS_DEFAULT_STYLE (
+		.tx-lpfussballde-pi1 iframe {
+			width: 100%;
+		}
+	)
 }
-plugin.tx_lpfussballde._CSS_DEFAULT_STYLE (
-	.tx-lpfussballde-pi1 iframe {
-		width: 100%;
-	}
-)

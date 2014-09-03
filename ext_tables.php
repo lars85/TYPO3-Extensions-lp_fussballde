@@ -1,34 +1,38 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+defined('TYPO3_MODE') or die();
 
-$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
+$boot = function($packageKey) {
+	$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($packageKey);
 
-/**
- * Add setup.txt / constants.txt to static files selection in template records
- */
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-	$_EXTKEY,
-	'Configuration/TypoScript',
-	'Fussball.de'
-);
+	/**
+	 * Add setup.txt / constants.txt to static files selection in template records
+	 */
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+		$packageKey,
+		'Configuration/TypoScript',
+		'Fussball.de'
+	);
 
-/**
- * Add Plugin
- */
-$pluginName = 'pi1';
-$pluginSignatureList = strtolower($extensionName) . '_' . $pluginName;
+	/**
+	 * Add Plugin
+	 */
+	$pluginName = 'pi1';
+	$pluginSignatureList = strtolower($extensionName) . '_' . $pluginName;
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	$pluginName,
-	'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_flexform.xlf:' . $pluginName,
-	'EXT:' . $_EXTKEY . '/ext_icon.gif'
-);
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		$packageKey,
+		$pluginName,
+		'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_flexform.xlf:' . $pluginName,
+		'EXT:' . $packageKey . '/ext_icon.gif'
+	);
 
-$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignatureList] = 'layout,select_key,pages,recursive';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignatureList] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-	$pluginSignatureList, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_' . $pluginName .'.xml'
-);
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignatureList] = 'layout,select_key,pages,recursive';
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignatureList] = 'pi_flexform';
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+		$pluginSignatureList,
+		'FILE:EXT:' . $packageKey . '/Configuration/FlexForms/flexform_' . $pluginName . '.xml'
+	);
+};
+
+$boot($_EXTKEY);
+unset($boot);

@@ -13,9 +13,6 @@
 			<trans-unit id="pi1.wettbewerbId">
 				<source>CompetitionID (German: WettbewerbID, Example: "01H9UO9UBK000000VV0AG812VVFL8F56-D")</source>
 			</trans-unit>
-			<trans-unit id="pi1.mandantId">
-				<source>ClientID (German: MandantID, Example: "35")</source>
-			</trans-unit>
 			<trans-unit id="pi1.display">
 				<source>Display</source>
 			</trans-unit>

@@ -13,11 +13,6 @@
 				<target>WettbewerbID: (Beispiel: "01H9UO9UBK000000VV0AG812VVFL8F56-D")</target>
 			</trans-unit>
 
-			<trans-unit id="pi1.mandantId">
-				<source>ClientID: (German: MandantID, Example: "35")</source>
-				<target>MandantID: (Beispiel: "35")</target>
-			</trans-unit>
-
 			<trans-unit id="pi1.display">
 				<source>Display: "1" for games, "2" for table</source>
 				<target>Display: "1" für Spieltag, "2" für Tabelle</target>

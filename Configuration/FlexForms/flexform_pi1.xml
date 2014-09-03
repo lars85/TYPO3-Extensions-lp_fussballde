@@ -27,16 +27,6 @@
 				</TCEforms>
 			</settings.attributes.wettbewerbId>
 
-			<settings.attributes.mandantId>
-				<TCEforms>
-					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.mandantId</label>
-					<config>
-						<type>input</type>
-						<size>8</size>
-					</config>
-				</TCEforms>
-			</settings.attributes.mandantId>
-
 			<settings.attributes.display>
 				<TCEforms>
 					<label>LLL:EXT:lp_fussballde/Resources/Private/Language/locallang_flexform.xlf:pi1.display</label>

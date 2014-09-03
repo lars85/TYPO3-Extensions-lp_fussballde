@@ -1,14 +1,15 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+defined('TYPO3_MODE') or die();
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'LarsMalach.' . $_EXTKEY,
-	'pi1',
-	array(
-		'Main' => 'show',
-	),
-	array(
-	)
-);
+$boot = function($packageKey) {
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'LarsMalach.' . $packageKey,
+		'pi1',
+		array(
+			'Main' => 'show',
+		)
+	);
+};
+
+$boot($_EXTKEY);
+unset($boot);

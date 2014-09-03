@@ -14,12 +14,12 @@ Administrator Manual
 
 Target group: **Administrators**
 
-Schlüssel, MandantID und WettbewerbID auf Fussball.de abrufen
+Schlüssel und WettbewerbID auf Fussball.de abrufen
 =============================================================
 
 #. Mannschaft auf Fussball.de suchen
 #. Meisterschaftswettbewerb auswaehlen
-#. Am Ende der Seite den Link "Widget generieren" anklicken. Hier können die MandantID und WettbewerbID abgelesen werden
+#. Am Ende der Seite den Link "Widget generieren" anklicken. Hier kann die WettbewerbID abgelesen werden
 #. Weiteren Informationen und die Generierung des Schlüssels können über den Button "Widget erzeugen" abgerufen werden
 
 .. figure:: Images/widgetGenerieren.png

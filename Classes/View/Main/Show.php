@@ -15,8 +15,9 @@ Namespace LarsMalach\LpFussballde\View\Main;
  * The TYPO3 project - inspiring people to share!
  */
 
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use \TYPO3\CMS\Extbase\Mvc\View\AbstractView;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\View\AbstractView;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * The view
@@ -38,7 +39,7 @@ class Show extends AbstractView {
 	 * @return string
 	 */
 	public function render() {
-		/** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+		/** @var $contentObject ContentObjectRenderer */
 		$contentObject = $this->variables['contentObject'];
 		unset($this->variables['contentObject']);
 
@@ -57,7 +58,7 @@ class Show extends AbstractView {
 		if (!empty($extensionTypoScript['renderObj'])) {
 			$content = $contentObject->cObjGetSingle($extensionTypoScript['renderObj'], $extensionTypoScript['renderObj.']);
 		} else {
-			$content = 'Please inlcude TypoScript static files (setup.txt and constants.txt) of lp_fussballde_f4x extension.';
+			$content = 'Please inlcude TypoScript static files (setup.txt and constants.txt) of lp_fussballde extension.';
 		}
 
 		return $content;
@@ -75,8 +76,8 @@ class Show extends AbstractView {
 	/**
 	 * Merge nested array into one array.
 	 *
-	 * @param array $variables
-	 * @param array $fields
+	 * @param mixed $variables
+	 * @param array &$fields
 	 * @return void
 	 */
 	protected function mergeIntoOneArray($variables, &$fields) {

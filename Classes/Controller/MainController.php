@@ -15,13 +15,15 @@ namespace LarsMalach\LpFussballde\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
 /**
  * The main controller for the page backend module.
  *
  * @package LpFussballde
  * @author Lars Malach <Lars@Malach.de>
  */
-class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class MainController extends ActionController {
 
 	/**
 	 * Initializes the controller before invoking an action method.
@@ -30,7 +32,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	protected function initializeAction() {
 		// Replace old pattern with new one (new pattern comes with Extbase 6.2)
-		if (!preg_match('/\\\/', $this->viewObjectNamePattern)) {
+		if (isset($this->viewObjectNamePattern) && !preg_match('/\\\/', $this->viewObjectNamePattern)) {
 			$this->viewObjectNamePattern = 'LarsMalach\@extension\View\@controller\@action@format';
 		}
 	}
@@ -38,7 +40,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	/**
 	 * Show Action
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function showAction() {
 		$contentObject = $this->configurationManager->getContentObject();
