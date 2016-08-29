@@ -1,5 +1,5 @@
 {
-    "name": "typo3-ter/lp-fussballde",
+    "name": "lars-peipmann/lp-fussballde",
     "type": "typo3-cms-extension",
     "description": "Bindet Begegnungen und Spielplaene von Fussball.de ueber JavaScript ein. Anmeldung auf Fussball.de ist noetig!",
     "homepage": "https://github.com/lars85/TYPO3-Extensions-lp_fussballde",
